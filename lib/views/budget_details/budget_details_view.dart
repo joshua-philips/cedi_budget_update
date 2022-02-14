@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cedi_budget_update/models/budget.dart';
 import 'package:cedi_budget_update/services/auth_service.dart';
 import 'package:cedi_budget_update/services/database_service.dart';
+import 'package:cedi_budget_update/services/theme_provider.dart';
 import 'package:cedi_budget_update/views/budget_details/deposit_view.dart';
 import 'package:cedi_budget_update/views/budget_details/edit_budget_amount.dart';
 import 'package:cedi_budget_update/widgets/items_card_list.dart';
@@ -25,6 +26,7 @@ class BudgetDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool darkTheme = context.watch<ThemeNotifier>().darkTheme;
     return Scaffold(
       key: _scaffoldKey,
       body: Center(
@@ -48,11 +50,7 @@ class BudgetDetailsView extends StatelessWidget {
                           Text(
                             'Edit Budget & Items',
                             style: TextStyle(
-                              color: Theme.of(context)
-                                  .appBarTheme
-                                  .textTheme!
-                                  .headline6!
-                                  .color,
+                              color: darkTheme ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -318,10 +316,8 @@ class BudgetDetailsView extends StatelessWidget {
   }
 
   Widget notesCard(BuildContext context) {
+
     return Card(
-      color: Theme.of(context).brightness != Brightness.dark
-          ? Colors.white
-          : Theme.of(context).cardColor,
       child: InkWell(
         child: Column(
           children: [
@@ -356,7 +352,7 @@ class BudgetDetailsView extends StatelessWidget {
   }
 
   List<Widget> setNoteText() {
-    if (budget.notes == null || budget.notes == '') {
+    if (budget.notes == '') {
       return [
         Padding(
           padding: const EdgeInsets.only(

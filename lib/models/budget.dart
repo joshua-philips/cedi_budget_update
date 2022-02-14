@@ -18,6 +18,11 @@ class Budget {
     required this.amount,
     required this.items,
     required this.hasItems,
+    required this.amountSaved,
+    required this.amountUsed,
+    required this.documentId,
+    required this.ledger,
+    required this.notes,
   });
 
   /// No argument constuctor
@@ -26,7 +31,11 @@ class Budget {
     this.endDate = DateTime.now().add(Duration(days: 7));
     this.amount = 0;
     this.items = {};
+    this.notes = '';
+    this.amountSaved = 0;
+    this.amountUsed = 0;
     this.hasItems = false;
+    this.documentId = '';
     this.ledger = [];
   }
 

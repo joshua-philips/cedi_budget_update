@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cedi_budget_update/models/budget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -182,12 +183,18 @@ class FullDates extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5),
-          // TODO: Use AutoSizeText Here
           Row(
             children: [
-              Text(
-                '${DateFormat('EEEE, MMM d, yyyy').format(budget.endDate).toString()}',
-                style: TextStyle(color: dateColor, fontSize: 25),
+              SizedBox(
+                height: 30,
+                child: AutoSizeText(
+                  '${DateFormat('EEEE, MMM d, yyyy').format(budget.endDate).toString()}',
+                  maxLines: 1,
+                  style: TextStyle(
+                    color: dateColor,
+                    fontSize: 25,
+                  ),
+                ),
               ),
             ],
           ),

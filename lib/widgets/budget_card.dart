@@ -1,29 +1,30 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cedi_budget_update/models/budget.dart';
-import 'package:cedi_budget_update/services/theme_provider.dart';
 import 'package:cedi_budget_update/views/budget_details/budget_details_view.dart';
 import 'package:cedi_budget_update/widgets/selected_dates.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 
-class BudgetCard extends StatelessWidget {
+class BudgetCard extends StatefulWidget {
   final DocumentSnapshot documentSnapshot;
 
   const BudgetCard({Key? key, required this.documentSnapshot})
       : super(key: key);
 
   @override
+  State<BudgetCard> createState() => _BudgetCardState();
+}
+
+class _BudgetCardState extends State<BudgetCard> {
+  @override
   Widget build(BuildContext context) {
-    final Budget budget = Budget.fromSnapshot(documentSnapshot);
+    final Budget budget = Budget.fromSnapshot(widget.documentSnapshot);
 
     return Container(
       padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
       child: Card(
-        color: context.watch<ThemeNotifier>().darkTheme
-            ? Colors.white
-            : Theme.of(context).cardColor,
+        color: Theme.of(context).cardColor,
         child: InkWell(
           child: Column(
             children: [

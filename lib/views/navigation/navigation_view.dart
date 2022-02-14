@@ -1,5 +1,6 @@
 import 'package:cedi_budget_update/models/budget.dart';
 import 'package:cedi_budget_update/services/auth_service.dart';
+import 'package:cedi_budget_update/services/theme_provider.dart';
 import 'package:cedi_budget_update/views/my_account/my_account_view.dart';
 import 'package:cedi_budget_update/views/new_budget/new_budget_date_view.dart';
 import 'package:cedi_budget_update/widgets/custom_navigation_bar.dart';
@@ -25,6 +26,7 @@ class _NavigationViewState extends State<NavigationView> {
   ];
   @override
   Widget build(BuildContext context) {
+    bool darkTheme = context.watch<ThemeNotifier>().darkTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text('Cedi Budget'),
@@ -41,11 +43,7 @@ class _NavigationViewState extends State<NavigationView> {
                     Text(
                       '${context.watch<AuthService>().getCurrentUser().displayName ?? ''}',
                       style: TextStyle(
-                        color: Theme.of(context)
-                            .appBarTheme
-                            .textTheme!
-                            .headline6!
-                            .color,
+                        color: darkTheme ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

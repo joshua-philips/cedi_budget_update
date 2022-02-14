@@ -21,8 +21,7 @@ class _EditNotesViewState extends State<EditNotesView> {
   @override
   void initState() {
     super.initState();
-    _notesController.text =
-        widget.budget.notes != null ? widget.budget.notes : '';
+    _notesController.text = widget.budget.notes;
   }
 
   @override

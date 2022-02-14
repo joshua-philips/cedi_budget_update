@@ -9,7 +9,8 @@ class TotalDaysText extends StatelessWidget {
   const TotalDaysText({Key? key, required this.budget}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    return SizedBox(
+      height: 40,
       child: AutoSizeText(
         '${budget.getTotalDaysofBudget().toString()} ${budget.getTotalDaysofBudget() == 1 ? 'day' : 'days'}',
         maxLines: 1,

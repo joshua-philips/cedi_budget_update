@@ -30,7 +30,7 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        height: 300,
+        height: 360,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

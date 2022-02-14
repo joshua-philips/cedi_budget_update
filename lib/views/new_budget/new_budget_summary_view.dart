@@ -64,73 +64,71 @@ class NewBudgetSummaryView extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 5, right: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'Budget Summary',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Budget Summary',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: 20),
-                      Divider(),
-                      ListTile(
-                        title: SelectedDates(budget: budget),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: TotalDaysText(budget: budget),
-                        ),
+                    ),
+                    SizedBox(height: 20),
+                    Divider(),
+                    ListTile(
+                      title: SelectedDates(budget: budget),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: TotalDaysText(budget: budget),
                       ),
-                      Divider(),
-                      SizedBox(height: 15),
-                      budget.hasItems
-                          ? ItemsCardList(budget: budget)
-                          : Container(),
-                      SizedBox(height: 20),
-                      TotalBudgetCard(budget: budget),
-                      SizedBox(height: 30),
-                      RoundedButton(
-                        color: Theme.of(context).colorScheme.secondary,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 30,
-                            right: 30,
-                            top: 10,
-                            bottom: 10,
-                          ),
-                          child: Text(
-                            'Finish',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                    ),
+                    Divider(),
+                    SizedBox(height: 15),
+                    budget.hasItems
+                        ? ItemsCardList(budget: budget)
+                        : Container(),
+                    SizedBox(height: 20),
+                    TotalBudgetCard(budget: budget),
+                    SizedBox(height: 30),
+                    RoundedButton(
+                      color: Theme.of(context).colorScheme.secondary,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 10,
+                          bottom: 10,
+                        ),
+                        child: Text(
+                          'Finish',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        onPressed: () async {
-                          showLoadingDialog(context);
+                      ),
+                      onPressed: () async {
+                        showLoadingDialog(context);
 
-                          try {
-                            await databaseService.saveBudgetToFirestore(
-                                budget, uid);
-                            hideLoadingDialog(context);
-                            Navigator.of(context)
-                                .popUntil((route) => route.isFirst);
-                          } catch (e) {
-                            print(e);
-                            // showMessageSnackBar(context, e.message);
-                          }
-                        },
-                      ),
-                      Container(height: 60),
-                    ],
-                  ),
+                        try {
+                          await databaseService.saveBudgetToFirestore(
+                              budget, uid);
+                          hideLoadingDialog(context);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
+                        } catch (e) {
+                          print(e);
+                          // showMessageSnackBar(context, e.message);
+                        }
+                      },
+                    ),
+                    Container(height: 60),
+                  ],
                 ),
               ),
             ]),

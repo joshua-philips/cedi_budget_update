@@ -14,6 +14,8 @@ ThemeData light = ThemeData.light().copyWith(
   textTheme: GoogleFonts.quicksandTextTheme(
     TextTheme(
       bodyText2: TextStyle(color: Colors.black, fontFamily: 'Quicksand'),
+      subtitle1: TextStyle(color: Colors.black),
+      subtitle2: TextStyle(color: Colors.black),
     ),
   ),
   appBarTheme: AppBarTheme(
@@ -40,6 +42,7 @@ ThemeData light = ThemeData.light().copyWith(
   cardTheme: CardTheme(
     elevation: 0.5,
   ),
+  cardColor: Colors.white,
 );
 
 ThemeData dark = ThemeData.dark().copyWith(
@@ -67,6 +70,7 @@ ThemeData dark = ThemeData.dark().copyWith(
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
+  cardColor: Colors.grey[900],
 );
 
 class ThemeNotifier extends ChangeNotifier {
