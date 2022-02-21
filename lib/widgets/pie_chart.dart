@@ -29,7 +29,7 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
+      child: SizedBox(
         height: 360,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,8 +57,8 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
                 ),
               ),
             ),
-            Divider(thickness: 1.5),
-            SizedBox(width: 8),
+            const Divider(thickness: 1.5),
+            const SizedBox(width: 8),
             buildIndicators(),
           ],
         ),
@@ -83,10 +83,10 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
                 color: colors[count],
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               indicatorText[count],
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
           ],
         ),
@@ -108,7 +108,7 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
         color: Colors.pink[600],
         title:
             '¢${dataMap.values.elementAt(0).toStringAsFixed(2)}\n${touchedIndex == 0 ? dataMap.keys.elementAt(0) : ''}',
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
@@ -118,7 +118,7 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
         color: Colors.green,
         title:
             '¢${dataMap.values.elementAt(1).toStringAsFixed(2)}\n${touchedIndex == 1 ? dataMap.keys.elementAt(1) : ''}',
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
@@ -128,7 +128,7 @@ class _PieChartCardFLState extends State<PieChartCardFL> {
         color: Colors.deepPurple,
         title:
             '¢${dataMap.values.elementAt(2).toStringAsFixed(2)}\n${touchedIndex == 2 ? dataMap.keys.elementAt(2) : ''}',
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,
         ),

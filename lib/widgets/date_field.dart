@@ -18,7 +18,7 @@ class DateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Row(
@@ -30,19 +30,19 @@ class DateField extends StatelessWidget {
             children: [
               Text(
                 DateFormat('MMM dd, yyyy').format(date).toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 child: Icon(icon, size: 40),
                 onTap: onIconPressed,
               ),
             ],
           ),
-          Divider(thickness: 2),
+          const Divider(thickness: 2),
         ],
       ),
     );

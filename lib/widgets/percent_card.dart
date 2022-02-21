@@ -22,7 +22,7 @@ class PercentCard extends StatelessWidget {
           children: [
             Text(
               'Total Used: GH¢${(budget.amountSaved + budget.amountUsed).toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             LinearPercentIndicator(
               lineHeight: 30,
@@ -30,30 +30,30 @@ class PercentCard extends StatelessWidget {
               progressColor: progressColor,
               percent: calculatePercent(
                   (budget.amountSaved + budget.amountUsed), budget.amount),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               center: Text(
                 '${(calculatePercent((budget.amountSaved + budget.amountUsed), budget.amount) * 100).toStringAsFixed(0)}%',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Divider(thickness: 1.5),
-            Text('Total Used Breakdown'),
+            const Divider(thickness: 1.5),
+            const Text('Total Used Breakdown'),
             Text(
               'Spent: GH¢${(budget.amountUsed).toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             LinearPercentIndicator(
               lineHeight: 30,
               linearStrokeCap: LinearStrokeCap.butt,
               progressColor: Colors.pink[600],
               percent: calculatePercent(budget.amountUsed, budget.amount),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               center: Text(
                 '${(calculatePercent(budget.amountUsed, budget.amount) * 100).toStringAsFixed(0)}%',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
@@ -61,17 +61,17 @@ class PercentCard extends StatelessWidget {
             ),
             Text(
               'Saved: GH¢${(budget.amountSaved).toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             LinearPercentIndicator(
               lineHeight: 30,
               linearStrokeCap: LinearStrokeCap.butt,
               progressColor: Colors.green,
               percent: calculatePercent(budget.amountSaved, budget.amount),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               center: Text(
                 '${(calculatePercent(budget.amountSaved, budget.amount) * 100).toStringAsFixed(0)}%',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),

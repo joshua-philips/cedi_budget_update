@@ -13,10 +13,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -46,11 +48,11 @@ class _MyAppState extends State<MyApp> {
           title: 'Cedi Budget',
           debugShowCheckedModeBanner: false,
           theme: context.watch<ThemeNotifier>().darkTheme ? dark : light,
-          home: HomeController(),
+          home: const HomeController(),
           routes: <String, WidgetBuilder>{
-            '/home': (BuildContext context) => HomeController(),
-            '/signUp': (BuildContext context) => SignUpView(),
-            '/signIn': (BuildContext context) => SignInView(),
+            '/home': (BuildContext context) => const HomeController(),
+            '/signUp': (BuildContext context) => const SignUpView(),
+            '/signIn': (BuildContext context) => const SignInView(),
           },
         );
       },
@@ -59,6 +61,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 class HomeController extends StatelessWidget {
+  const HomeController({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -66,9 +70,9 @@ class HomeController extends StatelessWidget {
       builder: (context, AsyncSnapshot<String?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final bool signedIn = snapshot.hasData;
-          return signedIn ? NavigationView() : FirstView();
+          return signedIn ? const NavigationView() : const FirstView();
         }
-        return Scaffold(
+        return const Scaffold(
           body: Center(),
         );
       },

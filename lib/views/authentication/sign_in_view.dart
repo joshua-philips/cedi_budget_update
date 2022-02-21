@@ -11,14 +11,16 @@ import 'password_reset_view.dart';
 import 'sign_up_view.dart';
 
 class SignInView extends StatefulWidget {
+  const SignInView({Key? key}) : super(key: key);
+
   @override
   _SignInViewState createState() => _SignInViewState();
 }
 
 class _SignInViewState extends State<SignInView> {
-  final formKey = new GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +35,10 @@ class _SignInViewState extends State<SignInView> {
             child: TextButton(
               onPressed: () {
                 Route route =
-                    MaterialPageRoute(builder: (context) => SignUpView());
+                    MaterialPageRoute(builder: (context) => const SignUpView());
                 Navigator.of(context).pushReplacement(route);
               },
-              child: Text(
+              child: const Text(
                 'Register',
                 style: TextStyle(
                   fontSize: 18,
@@ -55,11 +57,11 @@ class _SignInViewState extends State<SignInView> {
         child: Padding(
           padding: const EdgeInsets.only(right: 30, left: 30),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
                   child: Text(
                     'Log in to your account',
                     style: TextStyle(
@@ -96,8 +98,8 @@ class _SignInViewState extends State<SignInView> {
                           padding: const EdgeInsets.only(top: 30),
                           child: RoundedButton(
                             color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                 left: 82,
                                 right: 82,
                                 top: 10,
@@ -134,10 +136,10 @@ class _SignInViewState extends State<SignInView> {
                 TextButton(
                   onPressed: () {
                     Route route = MaterialPageRoute(
-                        builder: (context) => PasswordResetView());
+                        builder: (context) => const PasswordResetView());
                     Navigator.of(context).push(route);
                   },
-                  child: Text(
+                  child: const Text(
                     'Forgotten Password?',
                     style: TextStyle(
                       fontSize: 18,
@@ -146,14 +148,14 @@ class _SignInViewState extends State<SignInView> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   'OR',
                   style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GoogleAuthButton(
-                  style: AuthButtonStyle(
+                  style: const AuthButtonStyle(
                     borderRadius: 20,
                   ),
                   onPressed: () async {
@@ -182,7 +184,6 @@ class _SignInViewState extends State<SignInView> {
       await auth.signInWithGoogle();
       return 'Success';
     } catch (e) {
-      print(e);
       return 'Error';
     }
   }
@@ -198,7 +199,6 @@ class _SignInViewState extends State<SignInView> {
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     } catch (e) {
-      print(e);
       return 'Unknown Error';
     }
   }

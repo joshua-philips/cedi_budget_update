@@ -22,21 +22,21 @@ class _BudgetCardState extends State<BudgetCard> {
     final Budget budget = Budget.fromSnapshot(widget.documentSnapshot);
 
     return Container(
-      padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+      padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       child: Card(
         color: Theme.of(context).cardColor,
         child: InkWell(
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: FullDates(budget: budget),
                 ),
               ),
               budget.hasItems != true
-                  ? SizedBox(height: 20)
+                  ? const SizedBox(height: 20)
                   : buildCardItemsSmallList(context, budget),
               Padding(
                 padding: const EdgeInsets.only(
@@ -53,7 +53,7 @@ class _BudgetCardState extends State<BudgetCard> {
                       center: Text(
                         '${(calculatePercentUsed(budget) * 100).toStringAsFixed(0)}%\nUsed',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                         ),
                       ),
@@ -62,7 +62,7 @@ class _BudgetCardState extends State<BudgetCard> {
                       child: AutoSizeText(
                         'GH¢' + budget.amount.toStringAsFixed(2),
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.w500,
                         ),
@@ -91,19 +91,19 @@ class _BudgetCardState extends State<BudgetCard> {
     List<String> items = budget.items.keys.toList();
     List<double> prices = budget.items.values.toList();
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: EdgeInsets.only(left: 30, right: 30, top: 5),
+            padding: const EdgeInsets.only(left: 30, right: 30, top: 5),
             child: Row(
               children: [
                 Text(items[index]),
-                Spacer(),
+                const Spacer(),
                 Text('GH¢' + prices[index].toStringAsFixed(2)),
               ],
             ),

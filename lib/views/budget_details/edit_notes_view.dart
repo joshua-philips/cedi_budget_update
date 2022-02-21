@@ -30,15 +30,13 @@ class _EditNotesViewState extends State<EditNotesView> {
       key: _scaffoldKey,
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Container(
-            child: Column(
-              children: [
-                buildHeading(context),
-                buildNotesText(),
-                buildSubmitButton(context),
-              ],
-            ),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              buildHeading(context),
+              buildNotesText(),
+              buildSubmitButton(context),
+            ],
           ),
         ),
       ),
@@ -52,11 +50,11 @@ class _EditNotesViewState extends State<EditNotesView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
+          const Text(
             'Edit Budget Notes',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          Spacer(),
+          const Spacer(),
           TextButton(
             child: Container(
               decoration: BoxDecoration(
@@ -107,8 +105,8 @@ class _EditNotesViewState extends State<EditNotesView> {
     final databaseService = DatabaseService();
     return RoundedButton(
       color: Theme.of(context).colorScheme.secondary,
-      child: Padding(
-        padding: const EdgeInsets.only(
+      child: const Padding(
+        padding: EdgeInsets.only(
           left: 30,
           right: 30,
           top: 10,
@@ -132,7 +130,6 @@ class _EditNotesViewState extends State<EditNotesView> {
               uid, _notesController.text.trim(), widget.budget);
           hideLoadingDialog(context);
         } catch (e) {
-          print(e);
           hideLoadingDialog(context);
           // showMessageSnackBar(context, e.message);
         }

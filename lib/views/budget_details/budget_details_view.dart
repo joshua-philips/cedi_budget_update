@@ -12,7 +12,6 @@ import 'package:cedi_budget_update/widgets/selected_dates.dart';
 import 'package:cedi_budget_update/widgets/total_budget_card.dart';
 import 'package:cedi_budget_update/widgets/total_days_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../budget_details/edit_notes_view.dart';
@@ -31,10 +30,10 @@ class BudgetDetailsView extends StatelessWidget {
       key: _scaffoldKey,
       body: Center(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
-              title: Text('Details'),
+              title: const Text('Details'),
               pinned: true,
               elevation: 0,
               actions: [
@@ -45,8 +44,8 @@ class BudgetDetailsView extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         children: [
-                          Icon(Icons.format_list_bulleted),
-                          SizedBox(width: 5),
+                          const Icon(Icons.format_list_bulleted),
+                          const SizedBox(width: 5),
                           Text(
                             'Edit Budget & Items',
                             style: TextStyle(
@@ -83,17 +82,17 @@ class BudgetDetailsView extends StatelessWidget {
                               budget: budget,
                             ),
                           ),
-                          Divider(),
+                          const Divider(),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 15, right: 8, bottom: 8),
                             child: Row(
                               children: [
                                 TotalDaysText(budget: budget),
-                                Spacer(),
+                                const Spacer(),
                                 TextButton.icon(
-                                  icon: Icon(Icons.calendar_today_outlined),
-                                  label: Text(
+                                  icon: const Icon(Icons.calendar_today_outlined),
+                                  label: const Text(
                                     'Change Dates',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -103,13 +102,13 @@ class BudgetDetailsView extends StatelessWidget {
                                     showModalBottomSheet(
                                         context: context,
                                         isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
+                                        shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(15),
                                             topRight: Radius.circular(15),
                                           ),
                                         ),
-                                        builder: (context) => Container(
+                                        builder: (context) => SizedBox(
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -133,7 +132,7 @@ class BudgetDetailsView extends StatelessWidget {
                               top: 16, left: 8.0, right: 8),
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 'Items in your budget:',
                                 style: TextStyle(
                                   fontSize: 20,
@@ -186,7 +185,7 @@ class BudgetDetailsView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         heroTag: 'float',
-        child: Text(
+        child: const Text(
           '¢',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -205,7 +204,7 @@ class BudgetDetailsView extends StatelessWidget {
   Widget deleteBudgetButton(BuildContext context, Budget budget) {
     return TextButton.icon(
       style: TextButton.styleFrom(
-        padding: EdgeInsets.only(top: 15),
+        padding: const EdgeInsets.only(top: 15),
       ),
       icon: Icon(
         Icons.delete,
@@ -229,13 +228,13 @@ class BudgetDetailsView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 20,
                   left: 20,
                   right: 20,
                   bottom: 10,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.rectangle,
                 ),
                 child: Column(
@@ -249,8 +248,8 @@ class BudgetDetailsView extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
-                    SizedBox(height: 5),
-                    Text(
+                    const SizedBox(height: 5),
+                    const Text(
                       'Are you sure you want to delete this budget? Deleted items cannot be retieved.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -263,7 +262,7 @@ class BudgetDetailsView extends StatelessWidget {
                       children: [
                         TextButton(
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.only(right: 10, left: 10),
+                            padding: const EdgeInsets.only(right: 10, left: 10),
                           ),
                           child: Text(
                             'Delete',
@@ -288,7 +287,7 @@ class BudgetDetailsView extends StatelessWidget {
                         ),
                         TextButton(
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.only(right: 10, left: 20),
+                            padding: const EdgeInsets.only(right: 10, left: 20),
                           ),
                           child: Text(
                             'Cancel',
@@ -325,7 +324,7 @@ class BudgetDetailsView extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10.0, left: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     'Budget Notes',
                     style: TextStyle(
@@ -354,8 +353,8 @@ class BudgetDetailsView extends StatelessWidget {
   List<Widget> setNoteText() {
     if (budget.notes == '') {
       return [
-        Padding(
-          padding: const EdgeInsets.only(
+        const Padding(
+          padding: EdgeInsets.only(
             top: 5,
             left: 10,
             right: 10,
@@ -363,8 +362,8 @@ class BudgetDetailsView extends StatelessWidget {
           ),
           child: Icon(Icons.add_circle_outline),
         ),
-        Padding(
-          padding: const EdgeInsets.only(
+        const Padding(
+          padding: EdgeInsets.only(
             top: 5,
             right: 10,
             bottom: 10,
@@ -391,7 +390,7 @@ class BudgetDetailsView extends StatelessWidget {
             child: AutoSizeText(
               budget.notes,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,

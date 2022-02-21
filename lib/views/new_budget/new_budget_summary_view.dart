@@ -23,12 +23,12 @@ class NewBudgetSummaryView extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            title: Text('New Budget'),
+            title: const Text('New Budget'),
             actions: [
-              AppBarHomeButton(),
+              const AppBarHomeButton(),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: InkWell(
@@ -70,15 +70,15 @@ class NewBudgetSummaryView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
+                    const Text(
                       'Budget Summary',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Divider(),
+                    const SizedBox(height: 20),
+                    const Divider(),
                     ListTile(
                       title: SelectedDates(budget: budget),
                       subtitle: Padding(
@@ -86,18 +86,18 @@ class NewBudgetSummaryView extends StatelessWidget {
                         child: TotalDaysText(budget: budget),
                       ),
                     ),
-                    Divider(),
-                    SizedBox(height: 15),
+                    const Divider(),
+                    const SizedBox(height: 15),
                     budget.hasItems
                         ? ItemsCardList(budget: budget)
                         : Container(),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TotalBudgetCard(budget: budget),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     RoundedButton(
                       color: Theme.of(context).colorScheme.secondary,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
+                      child: const Padding(
+                        padding: EdgeInsets.only(
                           left: 30,
                           right: 30,
                           top: 10,

@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HelpAndFeedback extends StatefulWidget {
+  const HelpAndFeedback({Key? key}) : super(key: key);
+
   @override
   _HelpAndFeedbackState createState() => _HelpAndFeedbackState();
 }
 
 class _HelpAndFeedbackState extends State<HelpAndFeedback> {
-  TextEditingController _feedbackController = TextEditingController();
+  final TextEditingController _feedbackController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,36 +23,32 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Help & Feedback'),
+        title: const Text('Help & Feedback'),
       ),
       body: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: [
           ExpansionTile(
-            title: Text('Guidelines'),
-            childrenPadding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            title: const Text('Guidelines'),
+            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
-              Container(
-                child: Text(
-                  shortLorem,
-                ),
+              Text(
+                shortLorem,
               ),
             ],
           ),
           ExpansionTile(
-            title: Text('Privacy Policy'),
-            childrenPadding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            title: const Text('Privacy Policy'),
+            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
-              Container(
-                child: Text(
-                  shortLorem,
-                ),
+              Text(
+                shortLorem,
               ),
             ],
           ),
           ExpansionTile(
-            title: Text('Contributors'),
-            childrenPadding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            title: const Text('Contributors'),
+            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
               Row(
                 children: [
@@ -60,12 +58,12 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
             ],
           ),
           ExpansionTile(
-            title: Text('Feedback'),
+            title: const Text('Feedback'),
             initiallyExpanded: true,
-            childrenPadding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
+              const Padding(
+                padding: EdgeInsets.all(10),
                 child: Text(
                     'Ideas and suggestions to make this app better.\n\nFeedback:'),
               ),
@@ -73,7 +71,7 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
                 maxLines: 5,
                 controller: _feedbackController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(width: 10),
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -85,10 +83,10 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
                 ),
                 textCapitalization: TextCapitalization.sentences,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               RoundedButton(
                 color: Theme.of(context).colorScheme.secondary,
-                child: Text(
+                child: const Text(
                   'Submit',
                   style: TextStyle(
                     fontSize: 20,

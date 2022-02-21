@@ -7,13 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PasswordResetView extends StatefulWidget {
+  const PasswordResetView({Key? key}) : super(key: key);
+
   @override
   _PasswordResetViewState createState() => _PasswordResetViewState();
 }
 
 class _PasswordResetViewState extends State<PasswordResetView> {
-  final formKey = new GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +32,11 @@ class _PasswordResetViewState extends State<PasswordResetView> {
         child: Padding(
           padding: const EdgeInsets.only(right: 30, left: 30),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
                   child: Text(
                     'Password Reset',
                     style: TextStyle(
@@ -64,8 +66,8 @@ class _PasswordResetViewState extends State<PasswordResetView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: RoundedButton(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                 left: 50,
                                 right: 50,
                                 top: 10,
@@ -111,7 +113,6 @@ class _PasswordResetViewState extends State<PasswordResetView> {
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     } catch (e) {
-      print(e);
       return 'Unknown Error';
     }
   }

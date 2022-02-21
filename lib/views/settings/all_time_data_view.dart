@@ -6,37 +6,37 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AllTimeDataView extends StatelessWidget {
+  const AllTimeDataView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final String uid = context.read<AuthService>().getCurrentUser().uid;
     final DatabaseService databaseService = context.read<DatabaseService>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('All-Time Budget Data'),
-        actions: [
+        title: const Text('All-Time Budget Data'),
+        actions: const [
           AppBarHomeButton(),
         ],
       ),
-      body: Container(
-        child: FutureBuilder(
-          future: databaseService.getAllBudgets(uid),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasData) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
-                  child: buildAllTimmeTotals(snapshot),
-                );
-              } else {
-                return Container();
-              }
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
+      body: FutureBuilder(
+        future: databaseService.getAllBudgets(uid),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+                child: buildAllTimmeTotals(snapshot),
               );
+            } else {
+              return Container();
             }
-          },
-        ),
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
@@ -54,60 +54,58 @@ class AllTimeDataView extends StatelessWidget {
       savedTotal =
           savedTotal + Budget.fromSnapshot(snapshot.data[count]).amountSaved;
     }
-    return Container(
-      child: ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          ListTile(
-            title: Center(
-              child: Text(
-                'Financial Summary',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          ListTile(
-            title: Text(
-              'Total Amount Set:',
-            ),
-            trailing: Text(
-              'GH¢' + (amountTotal).toStringAsFixed(2),
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      children: [
+        const ListTile(
+          title: Center(
+            child: Text(
+              'Financial Summary',
               style: TextStyle(
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
               ),
             ),
           ),
-          ListTile(
-            title: Text(
-              'Total Amount Spent:',
-            ),
-            trailing: Text(
-              'GH¢' + (usedTotal).toStringAsFixed(2),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+        ),
+        const SizedBox(height: 20),
+        ListTile(
+          title: const Text(
+            'Total Amount Set:',
+          ),
+          trailing: Text(
+            'GH¢' + (amountTotal).toStringAsFixed(2),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
           ),
-          ListTile(
-            title: Text(
-              'Total Amount Saved:',
-            ),
-            trailing: Text(
-              'GH¢' + (savedTotal).toStringAsFixed(2),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+        ),
+        ListTile(
+          title: const Text(
+            'Total Amount Spent:',
+          ),
+          trailing: Text(
+            'GH¢' + (usedTotal).toStringAsFixed(2),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
           ),
-        ],
-      ),
+        ),
+        ListTile(
+          title: const Text(
+            'Total Amount Saved:',
+          ),
+          trailing: Text(
+            'GH¢' + (savedTotal).toStringAsFixed(2),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

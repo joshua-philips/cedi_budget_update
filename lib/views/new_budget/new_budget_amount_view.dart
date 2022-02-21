@@ -10,7 +10,7 @@ enum amountType { simple, complex }
 class NewBudgetAmountView extends StatefulWidget {
   final Budget budget;
 
-  NewBudgetAmountView({Key? key, required this.budget}) : super(key: key);
+  const NewBudgetAmountView({Key? key, required this.budget}) : super(key: key);
   @override
   _NewBudgetAmountViewState createState() => _NewBudgetAmountViewState();
 }
@@ -20,20 +20,20 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   late String _switchButtonText;
   double _amountTotal = 0;
 
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
   // Items
-  TextEditingController _item1 = TextEditingController();
-  TextEditingController _item2 = TextEditingController();
-  TextEditingController _item3 = TextEditingController();
-  TextEditingController _item4 = TextEditingController();
-  TextEditingController _item5 = TextEditingController();
+  final TextEditingController _item1 = TextEditingController();
+  final TextEditingController _item2 = TextEditingController();
+  final TextEditingController _item3 = TextEditingController();
+  final TextEditingController _item4 = TextEditingController();
+  final TextEditingController _item5 = TextEditingController();
 
   // Prices
-  TextEditingController _itemPrice1 = TextEditingController();
-  TextEditingController _itemPrice2 = TextEditingController();
-  TextEditingController _itemPrice3 = TextEditingController();
-  TextEditingController _itemPrice4 = TextEditingController();
-  TextEditingController _itemPrice5 = TextEditingController();
+  final TextEditingController _itemPrice1 = TextEditingController();
+  final TextEditingController _itemPrice2 = TextEditingController();
+  final TextEditingController _itemPrice3 = TextEditingController();
+  final TextEditingController _itemPrice4 = TextEditingController();
+  final TextEditingController _itemPrice5 = TextEditingController();
 
   @override
   void initState() {
@@ -76,8 +76,8 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
     List<Widget> fields = [];
     if (_amountState == amountType.simple) {
       fields.add(
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 20),
           child: Text(
             'Input total budget for the period',
             textAlign: TextAlign.center,
@@ -100,8 +100,8 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
       );
     } else {
       fields.add(
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 10),
           child: Text(
             'Input cost of each item',
             style: TextStyle(
@@ -191,7 +191,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
           padding: const EdgeInsets.only(top: 20, bottom: 10),
           child: Text(
             'Total: GH¢${_amountTotal.toStringAsFixed(2)}',
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           ),
         ),
       );
@@ -239,11 +239,11 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
         actions: [
           TextButton.icon(
             style: TextButton.styleFrom(
-              padding: EdgeInsets.only(right: 25, left: 25),
+              padding: const EdgeInsets.only(right: 25, left: 25),
               primary: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () {
@@ -264,7 +264,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
             ),
             label: Text(
               _switchButtonText,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -294,30 +294,28 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Container(
-              child: Column(
-                children: setAmountFields(_amountController) +
-                    [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: RoundedButton(
-                          color: Theme.of(context).colorScheme.secondary,
-                          child: Text(
-                            'Continue to summary',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: setAmountFields(_amountController) +
+                  [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: RoundedButton(
+                        color: Theme.of(context).colorScheme.secondary,
+                        child: const Text(
+                          'Continue to summary',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            continueToSummary();
-                          },
                         ),
+                        onPressed: () {
+                          continueToSummary();
+                        },
                       ),
-                    ],
-              ),
+                    ),
+                  ],
             ),
           ),
         ),

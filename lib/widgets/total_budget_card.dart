@@ -12,7 +12,7 @@ class TotalBudgetCard extends StatelessWidget {
           ? Theme.of(context).colorScheme.secondary
           : Theme.of(context).cardColor,
       child: ListTile(
-        title: Text(
+        title: const Text(
           'Total:',
           style: TextStyle(
             color: Colors.white,
@@ -22,7 +22,7 @@ class TotalBudgetCard extends StatelessWidget {
         ),
         trailing: Text(
           'GH¢' + budget.amount.toStringAsFixed(2),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 30,
             fontWeight: FontWeight.bold,

@@ -12,7 +12,7 @@ ThemeData light = ThemeData.light().copyWith(
   ),
   scaffoldBackgroundColor: Colors.grey[200],
   textTheme: GoogleFonts.quicksandTextTheme(
-    TextTheme(
+    const TextTheme(
       bodyText2: TextStyle(color: Colors.black, fontFamily: 'Quicksand'),
       subtitle1: TextStyle(color: Colors.black),
       subtitle2: TextStyle(color: Colors.black),
@@ -21,25 +21,25 @@ ThemeData light = ThemeData.light().copyWith(
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.grey[200],
-    titleTextStyle: TextStyle(
+    titleTextStyle: const TextStyle(
       color: Colors.black,
       fontSize: 20,
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: Colors.black,
     ),
     toolbarTextStyle: GoogleFonts.quicksand().copyWith(),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     elevation: 0,
   ),
-  pageTransitionsTheme: PageTransitionsTheme(
+  pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
-  cardTheme: CardTheme(
+  cardTheme: const CardTheme(
     elevation: 0.5,
   ),
   cardColor: Colors.white,
@@ -55,7 +55,7 @@ ThemeData dark = ThemeData.dark().copyWith(
   ),
   scaffoldBackgroundColor: Colors.black,
   textTheme: GoogleFonts.quicksandTextTheme(
-    TextTheme(
+    const TextTheme(
       bodyText2: TextStyle(color: Colors.white),
     ),
   ),
@@ -64,7 +64,7 @@ ThemeData dark = ThemeData.dark().copyWith(
     elevation: 0,
     toolbarTextStyle: GoogleFonts.quicksand().copyWith(),
   ),
-  pageTransitionsTheme: PageTransitionsTheme(
+  pageTransitionsTheme: const PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),

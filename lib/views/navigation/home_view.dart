@@ -8,33 +8,33 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final String uid = context.read<AuthService>().getCurrentUser().uid;
-    return Container(
-      child: StreamBuilder<QuerySnapshot>(
-        stream:
-            context.watch<DatabaseService>().getUsersBudgetStreamSnapshot(uid),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            if (snapshot.data!.docs.isNotEmpty) {
-              return buildBudgetList(context, snapshot);
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error.toString()),
-              );
-            } else {
-              return Center(
-                child: noData(context),
-              );
-            }
+    return StreamBuilder<QuerySnapshot>(
+      stream:
+          context.watch<DatabaseService>().getUsersBudgetStreamSnapshot(uid),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          if (snapshot.data!.docs.isNotEmpty) {
+            return buildBudgetList(context, snapshot);
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: noData(context),
             );
           }
-        },
-      ),
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 
@@ -42,9 +42,9 @@ class HomeView extends StatelessWidget {
     return Scrollbar(
       thickness: 2,
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: snapshot.data.docs.length,
-        padding: EdgeInsets.only(top: 10, bottom: 70),
+        padding: const EdgeInsets.only(top: 10, bottom: 70),
         itemBuilder: (context, int index) {
           return BudgetCard(documentSnapshot: snapshot.data.docs[index]);
         },
@@ -59,14 +59,14 @@ class HomeView extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Welcome to Cedi Budget.\nYou do not have a budget at this time. Press the button below to add your new budget.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: Theme.of(context).colorScheme.secondary,
@@ -75,8 +75,8 @@ class HomeView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(
+            child: const Padding(
+              padding: EdgeInsets.only(
                 left: 20,
                 right: 20,
                 top: 10,

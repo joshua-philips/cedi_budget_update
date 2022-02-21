@@ -11,7 +11,7 @@ class SelectedDates extends StatelessWidget {
   Widget build(BuildContext context) {
     Color dateColor = Theme.of(context).textTheme.bodyText2!.color!;
     return Padding(
-      padding: EdgeInsets.only(top: 0),
+      padding: const EdgeInsets.only(top: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -24,12 +24,12 @@ class SelectedDates extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '${DateFormat('EEE, dd/MM').format(budget.startDate).toString()}',
+                  DateFormat('EEE, dd/MM').format(budget.startDate).toString(),
                   style: TextStyle(fontSize: 25, color: dateColor),
                 ),
               ),
               Text(
-                '${DateFormat('yyyy').format(budget.startDate).toString()}',
+                DateFormat('yyyy').format(budget.startDate).toString(),
                 style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class SelectedDates extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 15),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 15),
             child: Icon(
               Icons.arrow_forward,
               size: 30,
@@ -56,12 +56,12 @@ class SelectedDates extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '${DateFormat('EEE, dd/MM').format(budget.endDate).toString()}',
+                  DateFormat('EEE, dd/MM').format(budget.endDate).toString(),
                   style: TextStyle(fontSize: 25, color: dateColor),
                 ),
               ),
               Text(
-                '${DateFormat('yyyy').format(budget.endDate).toString()}',
+                DateFormat('yyyy').format(budget.endDate).toString(),
                 style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
@@ -82,26 +82,26 @@ class LargeSelectedDates extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Column(
         children: [
           Column(
             children: [
-              Text(
+              const Text(
                 'Start Date',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '${DateFormat('EEE, dd/MM').format(budget.startDate).toString()}',
-                  style: TextStyle(
+                  DateFormat('EEE, dd/MM').format(budget.startDate).toString(),
+                  style: const TextStyle(
                     fontSize: 35,
                   ),
                 ),
               ),
               Text(
-                '${DateFormat('yyyy').format(budget.startDate).toString()}',
-                style: TextStyle(
+                DateFormat('yyyy').format(budget.startDate).toString(),
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -109,29 +109,29 @@ class LargeSelectedDates extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, bottom: 20),
-            child: Icon(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: const Icon(
               Icons.arrow_downward,
               size: 45,
             ),
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 'End Date',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  '${DateFormat('EEE, dd/MM').format(budget.endDate).toString()}',
-                  style: TextStyle(
+                  DateFormat('EEE, dd/MM').format(budget.endDate).toString(),
+                  style: const TextStyle(
                     fontSize: 35,
                   ),
                 ),
               ),
               Text(
-                '${DateFormat('yyyy').format(budget.endDate).toString()}',
-                style: TextStyle(
+                DateFormat('yyyy').format(budget.endDate).toString(),
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -152,14 +152,14 @@ class FullDates extends StatelessWidget {
   Widget build(BuildContext context) {
     Color dateColor = Theme.of(context).textTheme.bodyText2!.color!;
     return Padding(
-      padding: EdgeInsets.only(top: 0),
+      padding: const EdgeInsets.only(top: 0),
       child: Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                '${DateFormat('MMM d, yyyy').format(budget.startDate).toString()}',
+                DateFormat('MMM d, yyyy').format(budget.startDate).toString(),
                 maxLines: 1,
                 style: TextStyle(
                   color: dateColor,
@@ -167,13 +167,13 @@ class FullDates extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               budget.endDate.isBefore(DateTime.now())
-                  ? Icon(Icons.check_box_outlined, size: 30)
+                  ? const Icon(Icons.check_box_outlined, size: 30)
                   : Container(),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             children: [
               Text(
@@ -182,13 +182,13 @@ class FullDates extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             children: [
               SizedBox(
                 height: 30,
                 child: AutoSizeText(
-                  '${DateFormat('EEEE, MMM d, yyyy').format(budget.endDate).toString()}',
+                  DateFormat('EEEE, MMM d, yyyy').format(budget.endDate).toString(),
                   maxLines: 1,
                   style: TextStyle(
                     color: dateColor,

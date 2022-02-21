@@ -5,24 +5,26 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class FirstView extends StatelessWidget {
+  const FirstView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red[900],
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(40),
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.only(top: 150),
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(top: 150),
               dragStartBehavior: DragStartBehavior.down,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
+                  const Text(
                     'Welcome to the Cedi Budget app. Let\'s start saving money now!',
                     style: TextStyle(
                       color: Colors.white,
@@ -36,11 +38,11 @@ class FirstView extends StatelessWidget {
                       color: Colors.white,
                       onPressed: () {
                         Route route = MaterialPageRoute(
-                            builder: (context) => SignUpView());
+                            builder: (context) => const SignUpView());
                         Navigator.of(context).push(route);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
+                      child: const Padding(
+                        padding: EdgeInsets.only(
                           left: 50,
                           right: 50,
                           top: 10,
@@ -62,7 +64,7 @@ class FirstView extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Already have an account?',
                           style: TextStyle(
                             fontSize: 18,
@@ -73,14 +75,14 @@ class FirstView extends StatelessWidget {
                         TextButton(
                           onPressed: () {
                             Route route = MaterialPageRoute(
-                                builder: (context) => SignInView());
+                                builder: (context) => const SignInView());
                             Navigator.of(context).push(route);
                           },
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.only(left: 8),
-                            minimumSize: Size(0, 0),
+                            padding: const EdgeInsets.only(left: 8),
+                            minimumSize: const Size(0, 0),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Login',
                             style: TextStyle(
                               fontSize: 18,

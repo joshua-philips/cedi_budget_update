@@ -15,7 +15,7 @@ class TotalDaysText extends StatelessWidget {
         '${budget.getTotalDaysofBudget().toString()} ${budget.getTotalDaysofBudget() == 1 ? 'day' : 'days'}',
         maxLines: 1,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.w600,
         ),

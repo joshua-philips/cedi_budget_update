@@ -9,126 +9,127 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChangePasswordView extends StatefulWidget {
+  const ChangePasswordView({Key? key}) : super(key: key);
+
   @override
   _ChangePasswordViewState createState() => _ChangePasswordViewState();
 }
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
-  final formKey = new GlobalKey<FormState>();
-  TextEditingController _oldPasswordController = TextEditingController();
-  TextEditingController _newPasswordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _oldPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change Password'),
+        title: const Text('Change Password'),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        actions: [AppBarHomeButton()],
+        actions: const [AppBarHomeButton()],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 30,
-                    left: 30,
-                  ),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        UpdateTextFormField(
-                          controller: _oldPasswordController,
-                          helperText: 'Old Password',
-                          obscureText: true,
-                          validator: (val) {
-                            if (val!.length < 1) {
-                              return 'Please enter old password';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        UpdateTextFormField(
-                          controller: _newPasswordController,
-                          validator: (val) {
-                            if (val!.length < 6) {
-                              return 'New password must have 6 or more characters';
-                            } else if (val != _confirmPasswordController.text) {
-                              return 'Passwords do not match';
-                            } else {
-                              return null;
-                            }
-                          },
-                          helperText: 'New Password',
-                          obscureText: true,
-                        ),
-                        UpdateTextFormField(
-                          controller: _confirmPasswordController,
-                          validator: (val) {
-                            if (val!.length < 6) {
-                              return 'New password must have 6 or more characters';
-                            } else if (val != _newPasswordController.text) {
-                              return 'Passwords do not match';
-                            } else {
-                              return null;
-                            }
-                          },
-                          helperText: 'Confirm Password',
-                          obscureText: true,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 50),
-                          child: RoundedButton(
-                            color: Theme.of(context).colorScheme.secondary,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 50,
-                                right: 50,
-                                top: 10,
-                                bottom: 10,
-                              ),
-                              child: Text(
-                                'Change',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 30,
+                  left: 30,
+                ),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      UpdateTextFormField(
+                        controller: _oldPasswordController,
+                        helperText: 'Old Password',
+                        obscureText: true,
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'Please enter old password';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      UpdateTextFormField(
+                        controller: _newPasswordController,
+                        validator: (val) {
+                          if (val!.length < 6) {
+                            return 'New password must have 6 or more characters';
+                          } else if (val != _confirmPasswordController.text) {
+                            return 'Passwords do not match';
+                          } else {
+                            return null;
+                          }
+                        },
+                        helperText: 'New Password',
+                        obscureText: true,
+                      ),
+                      UpdateTextFormField(
+                        controller: _confirmPasswordController,
+                        validator: (val) {
+                          if (val!.length < 6) {
+                            return 'New password must have 6 or more characters';
+                          } else if (val != _newPasswordController.text) {
+                            return 'Passwords do not match';
+                          } else {
+                            return null;
+                          }
+                        },
+                        helperText: 'Confirm Password',
+                        obscureText: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: RoundedButton(
+                          color: Theme.of(context).colorScheme.secondary,
+                          child: const Padding(
+                            padding: EdgeInsets.only(
+                              left: 50,
+                              right: 50,
+                              top: 10,
+                              bottom: 10,
+                            ),
+                            child: Text(
+                              'Change',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                showLoadingDialog(context);
-                                String returnedString = await changePassword();
-                                if (returnedString == 'Success') {
-                                  hideLoadingDialog(context);
-                                  showAlertDialog(context, 'Success!',
-                                      'Password succesfully changed');
-                                  setState(() {
-                                    _confirmPasswordController.clear();
-                                    _newPasswordController.clear();
-                                    _oldPasswordController.clear();
-                                  });
-                                } else {
-                                  hideLoadingDialog(context);
-                                  showMessageSnackBar(context, returnedString);
-                                }
-                              }
-                            },
                           ),
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              showLoadingDialog(context);
+                              String returnedString = await changePassword();
+                              if (returnedString == 'Success') {
+                                hideLoadingDialog(context);
+                                showAlertDialog(context, 'Success!',
+                                    'Password succesfully changed');
+                                setState(() {
+                                  _confirmPasswordController.clear();
+                                  _newPasswordController.clear();
+                                  _oldPasswordController.clear();
+                                });
+                              } else {
+                                hideLoadingDialog(context);
+                                showMessageSnackBar(context, returnedString);
+                              }
+                            }
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -144,7 +145,6 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     } catch (e) {
-      print(e);
       return 'Unknown Error';
     }
   }

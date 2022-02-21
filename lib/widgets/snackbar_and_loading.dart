@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void showLoadingSnackBar(BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
+    const SnackBar(
       duration: Duration(days: 1),
       content: Padding(
         padding: EdgeInsets.only(bottom: 15),
@@ -20,7 +20,7 @@ void showLoadingSnackBar(BuildContext context) {
 void showLoadingDialog(BuildContext context) {
   showDialog(
     context: context,
-    builder: (context) => Dialog(
+    builder: (context) => const Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
       child: SpinKitRing(
@@ -38,33 +38,31 @@ void showMessageSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: Colors.grey[900],
-      duration: Duration(seconds: 4),
-      shape: RoundedRectangleBorder(
+      duration: const Duration(seconds: 4),
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(8),
           topRight: Radius.circular(8),
         ),
       ),
-      content: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  AutoSizeText(
-                    message,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AutoSizeText(
+                  message,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ),
   );

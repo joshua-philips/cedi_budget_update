@@ -27,16 +27,16 @@ class Budget {
 
   /// No argument constuctor
   Budget.noArgument() {
-    this.startDate = DateTime.now();
-    this.endDate = DateTime.now().add(Duration(days: 7));
-    this.amount = 0;
-    this.items = {};
-    this.notes = '';
-    this.amountSaved = 0;
-    this.amountUsed = 0;
-    this.hasItems = false;
-    this.documentId = '';
-    this.ledger = [];
+    startDate = DateTime.now();
+    endDate = DateTime.now().add(const Duration(days: 7));
+    amount = 0;
+    items = {};
+    notes = '';
+    amountSaved = 0;
+    amountUsed = 0;
+    hasItems = false;
+    documentId = '';
+    ledger = [];
   }
 
   /// Formatting for upload to Firebase
@@ -58,16 +58,16 @@ class Budget {
   Budget.fromSnapshot(DocumentSnapshot documentSnapshot) {
     Map<String, dynamic> data =
         documentSnapshot.data()! as Map<String, dynamic>;
-    this.startDate = data['startDate'].toDate();
-    this.endDate = data['endDate'].toDate();
-    this.amount = data['amount'] ?? 0.0;
-    this.notes = data['notes'] ?? '';
-    this.items = Map<String, double>.from(data['items']);
-    this.amountUsed = data['amountUsed'] ?? 0.0;
-    this.amountSaved = data['amountSaved'] ?? 0.0;
-    this.hasItems = data['hasItems'] ?? false;
-    this.documentId = documentSnapshot.id;
-    this.ledger = data['ledger'] ?? [];
+    startDate = data['startDate'].toDate();
+    endDate = data['endDate'].toDate();
+    amount = data['amount'] ?? 0.0;
+    notes = data['notes'] ?? '';
+    items = Map<String, double>.from(data['items']);
+    amountUsed = data['amountUsed'] ?? 0.0;
+    amountSaved = data['amountSaved'] ?? 0.0;
+    hasItems = data['hasItems'] ?? false;
+    documentId = documentSnapshot.id;
+    ledger = data['ledger'] ?? [];
   }
 
   /// Total days of the budget

@@ -26,20 +26,20 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   late List<String> items;
   late List<double> prices;
 
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
   // Items
-  TextEditingController _item1 = TextEditingController();
-  TextEditingController _item2 = TextEditingController();
-  TextEditingController _item3 = TextEditingController();
-  TextEditingController _item4 = TextEditingController();
-  TextEditingController _item5 = TextEditingController();
+  final TextEditingController _item1 = TextEditingController();
+  final TextEditingController _item2 = TextEditingController();
+  final TextEditingController _item3 = TextEditingController();
+  final TextEditingController _item4 = TextEditingController();
+  final TextEditingController _item5 = TextEditingController();
 
   // Prices
-  TextEditingController _itemPrice1 = TextEditingController();
-  TextEditingController _itemPrice2 = TextEditingController();
-  TextEditingController _itemPrice3 = TextEditingController();
-  TextEditingController _itemPrice4 = TextEditingController();
-  TextEditingController _itemPrice5 = TextEditingController();
+  final TextEditingController _itemPrice1 = TextEditingController();
+  final TextEditingController _itemPrice2 = TextEditingController();
+  final TextEditingController _itemPrice3 = TextEditingController();
+  final TextEditingController _itemPrice4 = TextEditingController();
+  final TextEditingController _itemPrice5 = TextEditingController();
 
   @override
   void initState() {
@@ -136,8 +136,8 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   List<Widget> setAmountFields(_amountController) {
     List<Widget> fields = [];
     if (_amountState == amountType.simple) {
-      fields.add(Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+      fields.add(const Padding(
+        padding: EdgeInsets.only(bottom: 20),
         child: Text(
           'Enter your total budget for the period',
           textAlign: TextAlign.center,
@@ -157,8 +157,8 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
         ),
       );
     } else {
-      fields.add(Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+      fields.add(const Padding(
+        padding: EdgeInsets.only(bottom: 10),
         child: Text(
           'Enter cost of each item',
           style: TextStyle(
@@ -248,7 +248,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
           padding: const EdgeInsets.only(top: 20, bottom: 10),
           child: Text(
             'Total: GH¢${_amountTotal.toStringAsFixed(2)}',
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           ),
         ),
       );
@@ -302,7 +302,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
           TextButton.icon(
             style: TextButton.styleFrom(
               primary: Theme.of(context).colorScheme.secondary,
-              padding: EdgeInsets.only(right: 25, left: 25),
+              padding: const EdgeInsets.only(right: 25, left: 25),
             ),
             onPressed: () {
               setState(() {
@@ -322,7 +322,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
             ),
             label: Text(
               _switchButtonText,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -352,27 +352,25 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Container(
-              child: Column(
-                children: setAmountFields(_amountController) +
-                    [
-                      RoundedButton(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: setAmountFields(_amountController) +
+                  [
+                    RoundedButton(
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                        color: Theme.of(context).colorScheme.secondary,
-                        onPressed: () {
-                          finish();
-                        },
                       ),
-                    ],
-              ),
+                      color: Theme.of(context).colorScheme.secondary,
+                      onPressed: () {
+                        finish();
+                      },
+                    ),
+                  ],
             ),
           ),
         ),

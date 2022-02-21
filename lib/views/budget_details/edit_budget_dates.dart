@@ -35,8 +35,8 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
     DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: initialDate,
-      firstDate: DateTime.now().subtract(Duration(days: 365 * 50)),
-      lastDate: DateTime.now().add(Duration(days: 365 * 50)),
+      firstDate: DateTime.now().subtract(const Duration(days: 365 * 50)),
+      lastDate: DateTime.now().add(const Duration(days: 365 * 50)),
     );
     return newDate ?? initialDate;
   }
@@ -44,13 +44,13 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
+          const Padding(
+            padding: EdgeInsets.only(top: 15),
             child: Text(
               'Change Dates',
               style: TextStyle(
@@ -96,7 +96,7 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
                     '${_totalDays.toString()} ${_totalDays == 1 ? 'day' : 'days'}',
                     maxLines: 1,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
                     ),
@@ -105,7 +105,7 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
               ],
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           buildButtons(context, widget.budget),
         ],
       ),
@@ -118,7 +118,7 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
       children: [
         RoundedButton(
           color: Theme.of(context).colorScheme.secondary,
-          child: Text(
+          child: const Text(
             'Update',
             style: TextStyle(
               fontSize: 20,
@@ -148,10 +148,10 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
             }
           },
         ),
-        SizedBox(height: 2),
+        const SizedBox(height: 2),
         RoundedButton(
           color: Colors.deepPurple,
-          child: Text(
+          child: const Text(
             'Cancel',
             style: TextStyle(
               fontSize: 20,

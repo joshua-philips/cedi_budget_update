@@ -7,13 +7,13 @@ class AuthTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final bool? autofocus;
 
-  AuthTextFormField({
+  const AuthTextFormField({Key? key, 
     required this.controller,
     this.validator,
     this.hintText,
     this.obscureText,
     this.autofocus,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AuthTextFormField extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20),
       child: TextFormField(
         controller: controller,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         cursorColor: Colors.redAccent,
         autofocus: autofocus ?? false,
         obscureText: obscureText ?? false,
@@ -31,13 +31,13 @@ class AuthTextFormField extends StatelessWidget {
           fillColor: Colors.white,
           focusColor: Colors.white,
           hintText: hintText ?? '',
-          hintStyle: TextStyle(color: Colors.black),
-          errorStyle: TextStyle(color: Colors.black),
+          hintStyle: const TextStyle(color: Colors.black),
+          errorStyle: const TextStyle(color: Colors.black),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(5),
           ),
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: const EdgeInsets.all(8),
         ),
         validator: validator,
       ),
@@ -53,21 +53,21 @@ class UpdateTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final bool? autofocus;
 
-  UpdateTextFormField({
+  const UpdateTextFormField({Key? key, 
     required this.controller,
     this.validator,
     this.helperText,
     this.obscureText,
     this.autofocus,
     this.label,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: TextFormField(
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         controller: controller,
         cursorColor: Colors.redAccent,
         autofocus: autofocus ?? false,
@@ -92,7 +92,7 @@ class ItemTextField extends StatelessWidget {
   final String? helperText;
   final bool? autofocus;
 
-  ItemTextField({
+  const ItemTextField({
     Key? key,
     required this.controller,
     this.helperText,
@@ -108,19 +108,19 @@ class ItemTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         maxLines: 1,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           helperText: helperText,
-          helperStyle: TextStyle(color: Colors.black),
+          helperStyle: const TextStyle(color: Colors.black),
           hintText: 'Item',
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: const TextStyle(color: Colors.black),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(5),
           ),
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: const EdgeInsets.all(8),
         ),
         autofocus: autofocus ?? false,
         textInputAction: TextInputAction.next,
@@ -135,7 +135,7 @@ class MoneyTextField extends StatelessWidget {
   final String? helperText;
   final bool? autofocus;
 
-  MoneyTextField({
+  const MoneyTextField({
     Key? key,
     required this.controller,
     this.helperText,
@@ -152,22 +152,22 @@ class MoneyTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         maxLines: 1,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
-          prefix: Text('GH¢'),
-          prefixStyle: TextStyle(color: Colors.black),
+          prefix: const Text('GH¢'),
+          prefixStyle: const TextStyle(color: Colors.black),
           helperText: helperText,
           hintText: '0.00',
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: const TextStyle(color: Colors.black),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(5),
           ),
-          contentPadding: EdgeInsets.all(8),
+          contentPadding: const EdgeInsets.all(8),
         ),
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
         textInputAction: TextInputAction.next,
         autofocus: autofocus ?? false,
       ),

@@ -23,14 +23,14 @@ class _DepositViewState extends State<DepositView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log Amount'),
+        title: const Text('Log Amount'),
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -38,7 +38,7 @@ class _DepositViewState extends State<DepositView> {
                 fit: BoxFit.fitWidth,
                 child: Text(
                   'GH¢$_amount',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.bold,
                   ),
@@ -51,16 +51,14 @@ class _DepositViewState extends State<DepositView> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: GridView.count(
-                    crossAxisCount: 3,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    childAspectRatio: 1.4,
-                    children: setKeyboard(),
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  childAspectRatio: 1.4,
+                  children: setKeyboard(),
                 ),
               ),
               Padding(
@@ -188,7 +186,7 @@ class _DepositViewState extends State<DepositView> {
           color: Theme.of(context).colorScheme.secondary,
           child: Text(
             type[0].toUpperCase() + type.substring(1),
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -258,7 +256,7 @@ class _DepositViewState extends State<DepositView> {
           pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) =>
               BudgetDetailsView(budget: widget.budget),
-          transitionDuration: Duration(seconds: 0),
+          transitionDuration: const Duration(seconds: 0),
         ),
       );
     }

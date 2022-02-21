@@ -9,16 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
+
   @override
   _SignUpViewState createState() => _SignUpViewState();
 }
 
 class _SignUpViewState extends State<SignUpView> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = new GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +36,10 @@ class _SignUpViewState extends State<SignUpView> {
             child: TextButton(
               onPressed: () {
                 Route route =
-                    MaterialPageRoute(builder: (context) => SignInView());
+                    MaterialPageRoute(builder: (context) => const SignInView());
                 Navigator.of(context).pushReplacement(route);
               },
-              child: Text(
+              child: const Text(
                 'Login',
                 style: TextStyle(
                   fontSize: 18,
@@ -56,12 +58,12 @@ class _SignUpViewState extends State<SignUpView> {
         child: Padding(
           padding: const EdgeInsets.only(right: 30, left: 30),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
                   child: Text(
                     'Create your account',
                     style: TextStyle(
@@ -102,8 +104,8 @@ class _SignUpViewState extends State<SignUpView> {
                           padding: const EdgeInsets.only(top: 30),
                           child: RoundedButton(
                             color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                 left: 75,
                                 right: 75,
                                 top: 10,
@@ -133,14 +135,14 @@ class _SignUpViewState extends State<SignUpView> {
                             },
                           ),
                         ),
-                        SizedBox(height: 20),
-                        Text(
+                        const SizedBox(height: 20),
+                        const Text(
                           'OR',
                           style: TextStyle(color: Colors.white),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         GoogleAuthButton(
-                          style: AuthButtonStyle(
+                          style: const AuthButtonStyle(
                             borderRadius: 20,
                           ),
                           onPressed: () async {
@@ -173,7 +175,6 @@ class _SignUpViewState extends State<SignUpView> {
       await auth.signInWithGoogle();
       return 'Success';
     } catch (e) {
-      print(e);
       return 'Error';
     }
   }
@@ -189,7 +190,6 @@ class _SignUpViewState extends State<SignUpView> {
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     } catch (e) {
-      print(e);
       return 'Unknown Error';
     }
   }

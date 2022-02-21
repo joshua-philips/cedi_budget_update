@@ -16,7 +16,7 @@ class CalculatorWidget extends StatefulWidget {
 }
 
 class _CalculatorWidgetState extends State<CalculatorWidget> {
-  TextEditingController _moneyController = TextEditingController();
+  final TextEditingController _moneyController = TextEditingController();
   int _amountSaved = 0;
   int _amountUsed = 0;
 
@@ -35,129 +35,123 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
       color: Theme.of(context).brightness == Brightness.light
           ? Colors.purple[100]
           : Theme.of(context).cardColor,
-      child: Container(
-        child: Column(
-          children: [
-            Container(
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.purple[200]
-                  : Theme.of(context).cardColor,
-              child: Padding(
-                padding: EdgeInsets.only(top: 8, bottom: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Flexible(
-                      child: Column(
-                        children: [
-                          AutoSizeText(
-                            'GH¢$_amountUsed',
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 40),
-                          ),
-                          Text('Used', style: TextStyle(fontSize: 20)),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 80,
-                      child: VerticalDivider(
-                        color: Theme.of(context).textTheme.bodyText2!.color,
-                        thickness: 4,
-                      ),
-                    ),
-                    Flexible(
-                      child: Column(
-                        children: [
-                          AutoSizeText(
-                            'GH¢$_amountSaved',
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 40),
-                          ),
-                          Text('Saved', style: TextStyle(fontSize: 20)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Theme.of(context).brightness == Brightness.light
-                ? Container()
-                : Divider(),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.only(left: 10, right: 50),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: MoneyTextField(
-                          controller: _moneyController,
-                          helperText: 'Add to used',
-                          autofocus: false,
+      child: Column(
+        children: [
+          Container(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.purple[200]
+                : Theme.of(context).cardColor,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Flexible(
+                    child: Column(
+                      children: [
+                        AutoSizeText(
+                          'GH¢$_amountUsed',
+                          maxLines: 1,
+                          style: const TextStyle(fontSize: 40),
                         ),
-                      ),
+                        const Text('Used', style: TextStyle(fontSize: 20)),
+                      ],
                     ),
-                    IconButton(
-                      icon: Icon(Icons.add_circle),
-                      color: Colors.green,
-                      iconSize: 40,
-                      onPressed: () async {
-                        setState(() {
-                          _amountUsed =
-                              _amountUsed + int.parse(_moneyController.text);
-                          _amountSaved =
-                              _amountSaved - int.parse(_moneyController.text);
-                          widget.budget.amountSaved = _amountSaved.toDouble();
-                          widget.budget.amountUsed = _amountUsed.toDouble();
-                        });
+                  ),
+                  SizedBox(
+                    height: 80,
+                    child: VerticalDivider(
+                      color: Theme.of(context).textTheme.bodyText2!.color,
+                      thickness: 4,
+                    ),
+                  ),
+                  Flexible(
+                    child: Column(
+                      children: [
+                        AutoSizeText(
+                          'GH¢$_amountSaved',
+                          maxLines: 1,
+                          style: const TextStyle(fontSize: 40),
+                        ),
+                        const Text('Saved', style: TextStyle(fontSize: 20)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Theme.of(context).brightness == Brightness.light
+              ? Container()
+              : const Divider(),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 50),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: MoneyTextField(
+                      controller: _moneyController,
+                      helperText: 'Add to used',
+                      autofocus: false,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add_circle),
+                  color: Colors.green,
+                  iconSize: 40,
+                  onPressed: () async {
+                    setState(() {
+                      _amountUsed =
+                          _amountUsed + int.parse(_moneyController.text);
+                      _amountSaved =
+                          _amountSaved - int.parse(_moneyController.text);
+                      widget.budget.amountSaved = _amountSaved.toDouble();
+                      widget.budget.amountUsed = _amountUsed.toDouble();
+                    });
 
-                        await databaseService.updateAmountUsed(
-                            uid, widget.budget);
-                        await databaseService.updateAmountSaved(
-                            uid, widget.budget);
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.remove_circle),
-                      color: Theme.of(context).colorScheme.secondary,
-                      iconSize: 40,
-                      onPressed: () async {
-                        setState(() {
-                          _amountUsed =
-                              _amountUsed - int.parse(_moneyController.text);
-                          _amountSaved =
-                              _amountSaved + int.parse(_moneyController.text);
-                          widget.budget.amountSaved = _amountSaved.toDouble();
-                          widget.budget.amountUsed = _amountUsed.toDouble();
-                        });
-                        await databaseService.updateAmountUsed(
-                            uid, widget.budget);
-                        await databaseService.updateAmountSaved(
-                            uid, widget.budget);
-                      },
-                    ),
-                  ],
+                    await databaseService.updateAmountUsed(
+                        uid, widget.budget);
+                    await databaseService.updateAmountSaved(
+                        uid, widget.budget);
+                  },
                 ),
-              ),
-            ),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    generateAddMoneyBtn(10),
-                    generateAddMoneyBtn(20),
-                    generateAddMoneyBtn(50),
-                  ],
+                IconButton(
+                  icon: const Icon(Icons.remove_circle),
+                  color: Theme.of(context).colorScheme.secondary,
+                  iconSize: 40,
+                  onPressed: () async {
+                    setState(() {
+                      _amountUsed =
+                          _amountUsed - int.parse(_moneyController.text);
+                      _amountSaved =
+                          _amountSaved + int.parse(_moneyController.text);
+                      widget.budget.amountSaved = _amountSaved.toDouble();
+                      widget.budget.amountUsed = _amountUsed.toDouble();
+                    });
+                    await databaseService.updateAmountUsed(
+                        uid, widget.budget);
+                    await databaseService.updateAmountSaved(
+                        uid, widget.budget);
+                  },
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                generateAddMoneyBtn(10),
+                generateAddMoneyBtn(20),
+                generateAddMoneyBtn(50),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -171,7 +165,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
       ),
       child: Text(
         'GH¢$amount',
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
       onPressed: () async {
         setState(() {

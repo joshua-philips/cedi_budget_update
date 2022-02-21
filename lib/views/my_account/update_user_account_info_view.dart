@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class UpdateUserAccountInfoView extends StatefulWidget {
+  const UpdateUserAccountInfoView({Key? key}) : super(key: key);
+
   @override
   _UpdateUserAccountInfoViewState createState() =>
       _UpdateUserAccountInfoViewState();
@@ -16,8 +18,8 @@ class UpdateUserAccountInfoView extends StatefulWidget {
 
 class _UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = new GlobalKey<FormState>();
-  TextEditingController _nameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   void initState() {
@@ -30,86 +32,84 @@ class _UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Update My Account'),
+        title: const Text('Update My Account'),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        actions: [AppBarHomeButton()],
+        actions: const [AppBarHomeButton()],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 30,
-                    left: 30,
-                  ),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        UpdateTextFormField(
-                          controller: _nameController,
-                          helperText: 'Name',
-                          validator: (val) {
-                            if (val!.length < 2) {
-                              return 'Name must have 2+ characters';
-                            } else {
-                              return null;
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 30,
+                  left: 30,
+                ),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      UpdateTextFormField(
+                        controller: _nameController,
+                        helperText: 'Name',
+                        validator: (val) {
+                          if (val!.length < 2) {
+                            return 'Name must have 2+ characters';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: RoundedButton(
+                          color: Theme.of(context).colorScheme.secondary,
+                          child: const Padding(
+                            padding: EdgeInsets.only(
+                              left: 50,
+                              right: 50,
+                              top: 10,
+                              bottom: 10,
+                            ),
+                            child: Text(
+                              'Update',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              showLoadingDialog(context);
+                              String returnedString = await changeUserInfo();
+                              hideLoadingDialog(context);
+
+                              if (returnedString == 'Success') {
+                                showMessageSnackBar(
+                                    context, 'User info updated');
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyAccountView(),
+                                  ),
+                                );
+                              } else {
+                                showMessageSnackBar(context, returnedString);
+                              }
                             }
                           },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 50),
-                          child: RoundedButton(
-                            color: Theme.of(context).colorScheme.secondary,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 50,
-                                right: 50,
-                                top: 10,
-                                bottom: 10,
-                              ),
-                              child: Text(
-                                'Update',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                showLoadingDialog(context);
-                                String returnedString = await changeUserInfo();
-                                hideLoadingDialog(context);
-
-                                if (returnedString == 'Success') {
-                                  showMessageSnackBar(
-                                      context, 'User info updated');
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => MyAccountView(),
-                                    ),
-                                  );
-                                } else {
-                                  showMessageSnackBar(context, returnedString);
-                                }
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -30,7 +30,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return Container(
       height: 70,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -48,19 +48,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               _changeIndex(index);
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               width: widget.currentIndex == index
                   ? MediaQuery.of(context).size.width / widget.children.length +
                       20
                   : 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              margin: const EdgeInsets.only(top: 10, bottom: 10),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: widget.currentIndex == index
                     ? color.withOpacity(0.1)
                     : Colors.transparent,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                   bottomLeft: Radius.circular(10),

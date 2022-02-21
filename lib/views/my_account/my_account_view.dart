@@ -8,93 +8,89 @@ import '../my_account/update_user_account_info_view.dart';
 import 'change_password_view.dart';
 
 class MyAccountView extends StatelessWidget {
+  const MyAccountView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final AuthService auth = context.watch<AuthService>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Account'),
+        title: const Text('My Account'),
         elevation: 0,
       ),
       body: Center(
-        child: Container(
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  displayUserInformation(context, auth),
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.secondary,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                displayUserInformation(context, auth),
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    primary: Theme.of(context).colorScheme.secondary,
+                  ),
+                  onPressed: () {
+                    Route route = MaterialPageRoute(
+                      builder: (context) => const UpdateUserAccountInfoView(),
+                    );
+                    Navigator.push(context, route);
+                  },
+                  icon: const Icon(Icons.account_circle),
+                  label: const Text(
+                    'Update Account Info',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
-                    onPressed: () {
-                      Route route = MaterialPageRoute(
-                        builder: (context) => UpdateUserAccountInfoView(),
-                      );
-                      Navigator.push(context, route);
-                    },
-                    icon: Icon(Icons.account_circle),
-                    label: Text(
-                      'Update Account Info',
+                  ),
+                ),
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    primary: Theme.of(context).colorScheme.secondary,
+                  ),
+                  onPressed: () {
+                    Route route = MaterialPageRoute(
+                      builder: (context) => const ChangePasswordView(),
+                    );
+                    Navigator.push(context, route);
+                  },
+                  icon: const Icon(Icons.lock_rounded),
+                  label: const Text(
+                    'Change Password',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
+                RoundedButton(
+                  color: Theme.of(context).colorScheme.secondary,
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                      left: 30,
+                      right: 30,
+                      top: 10,
+                      bottom: 10,
+                    ),
+                    child: Text(
+                      'Logout',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
                         fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.secondary,
-                    ),
-                    onPressed: () {
-                      Route route = MaterialPageRoute(
-                        builder: (context) => ChangePasswordView(),
-                      );
-                      Navigator.push(context, route);
-                    },
-                    icon: Icon(Icons.lock_rounded),
-                    label: Text(
-                      'Change Password',
-                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Divider(),
-                  SizedBox(height: 10),
-                  RoundedButton(
-                    color: Theme.of(context).colorScheme.secondary,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 30,
-                        right: 30,
-                        top: 10,
-                        bottom: 10,
-                      ),
-                      child: Text(
-                        'Logout',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    onPressed: () async {
-                      try {
-                        await auth.signOut();
-                      } catch (e) {
-                        print(e);
-                      }
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
+                  onPressed: () async {
+                    await auth.signOut();
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -109,13 +105,13 @@ class MyAccountView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           displayImage(auth, context),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           displayName(auth),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           displayEmail(auth),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           displayPhoneNumber(auth),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           displayDateCreated(auth, context),
         ],
       ),
@@ -125,25 +121,26 @@ class MyAccountView extends StatelessWidget {
   Widget displayEmail(AuthService auth) {
     return Text(
       auth.getCurrentUser().email!,
-      style: TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 20),
     );
   }
 
   Widget displayDateCreated(AuthService auth, BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.17,
       child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('member since'),
-            SizedBox(height: 10),
+            const Text('member since'),
+            const SizedBox(height: 10),
             Flexible(
               child: AutoSizeText(
-                '${DateFormat('EEE, MMM dd, yyyy').format(auth.getCurrentUser().metadata.creationTime!)}',
+                DateFormat('EEE, MMM dd, yyyy')
+                    .format(auth.getCurrentUser().metadata.creationTime!),
                 maxLines: 1,
-                style: TextStyle(fontSize: 35),
+                style: const TextStyle(fontSize: 35),
               ),
             ),
           ],
@@ -156,7 +153,7 @@ class MyAccountView extends StatelessWidget {
     if (auth.getCurrentUser().displayName != null) {
       return Text(
         auth.getCurrentUser().displayName!,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
       );
     } else {
       return Container();
@@ -167,7 +164,7 @@ class MyAccountView extends StatelessWidget {
     if (auth.getCurrentUser().phoneNumber != null) {
       return Text(auth.getCurrentUser().phoneNumber!);
     } else {
-      return Text('');
+      return const Text('');
     }
   }
 
@@ -181,7 +178,7 @@ class MyAccountView extends StatelessWidget {
         ),
       );
     } else {
-      return Icon(
+      return const Icon(
         Icons.account_circle,
         size: 150,
       );

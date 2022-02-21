@@ -10,7 +10,7 @@ import 'new_budget_amount_view.dart';
 class NewBudgetDateView extends StatefulWidget {
   final Budget budget;
 
-  NewBudgetDateView({Key? key, required this.budget}) : super(key: key);
+  const NewBudgetDateView({Key? key, required this.budget}) : super(key: key);
 
   @override
   _NewBudgetDateViewState createState() => _NewBudgetDateViewState();
@@ -18,15 +18,15 @@ class NewBudgetDateView extends StatefulWidget {
 
 class _NewBudgetDateViewState extends State<NewBudgetDateView> {
   DateTime _startDate = DateTime.now();
-  DateTime _endDate = DateTime.now().add(Duration(days: 7));
+  DateTime _endDate = DateTime.now().add(const Duration(days: 7));
 
   Future<DateTime> displayDatePicker(
       BuildContext context, DateTime initialDate) async {
     DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: initialDate,
-      firstDate: DateTime.now().subtract(Duration(days: 365 * 50)),
-      lastDate: DateTime.now().add(Duration(days: 365 * 50)),
+      firstDate: DateTime.now().subtract(const Duration(days: 365 * 50)),
+      lastDate: DateTime.now().add(const Duration(days: 365 * 50)),
     );
     return newDate ?? initialDate;
   }
@@ -35,26 +35,26 @@ class _NewBudgetDateViewState extends State<NewBudgetDateView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Input Date'),
-        actions: [
+        title: const Text('Input Date'),
+        actions: const [
           AppBarHomeButton(),
         ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
               Card(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 15, left: 10),
                       child: FullDates(budget: widget.budget),
                     ),
-                    Divider(),
+                    const Divider(),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Row(
@@ -67,7 +67,7 @@ class _NewBudgetDateViewState extends State<NewBudgetDateView> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               DateField(
                 label: 'Start Date',
                 date: _startDate,
@@ -110,7 +110,7 @@ class _NewBudgetDateViewState extends State<NewBudgetDateView> {
       children: [
         RoundedButton(
           color: Theme.of(context).colorScheme.secondary,
-          child: Text(
+          child: const Text(
             'Continue',
             style: TextStyle(
               fontSize: 20,
@@ -127,10 +127,10 @@ class _NewBudgetDateViewState extends State<NewBudgetDateView> {
             Navigator.of(context).push(route);
           },
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         RoundedButton(
           color: Colors.deepPurple,
-          child: Text(
+          child: const Text(
             'Cancel',
             style: TextStyle(
               fontSize: 20,
