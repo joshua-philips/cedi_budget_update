@@ -48,14 +48,9 @@ class NewBudgetSummaryView extends StatelessWidget {
                   onTap: () async {
                     showLoadingDialog(context);
 
-                    try {
-                      await databaseService.saveBudgetToFirestore(budget, uid);
-                      hideLoadingDialog(context);
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                    } catch (e) {
-                      print(e);
-                      // showMessageSnackBar(context, e.message);
-                    }
+                    await databaseService.saveBudgetToFirestore(budget, uid);
+                    hideLoadingDialog(context);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
                   },
                 ),
               ),
@@ -115,16 +110,11 @@ class NewBudgetSummaryView extends StatelessWidget {
                       onPressed: () async {
                         showLoadingDialog(context);
 
-                        try {
-                          await databaseService.saveBudgetToFirestore(
-                              budget, uid);
-                          hideLoadingDialog(context);
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst);
-                        } catch (e) {
-                          print(e);
-                          // showMessageSnackBar(context, e.message);
-                        }
+                        await databaseService.saveBudgetToFirestore(
+                            budget, uid);
+                        hideLoadingDialog(context);
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
                       },
                     ),
                     Container(height: 60),

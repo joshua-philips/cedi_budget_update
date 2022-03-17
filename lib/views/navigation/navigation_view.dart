@@ -43,7 +43,11 @@ class _NavigationViewState extends State<NavigationView> {
                     const Icon(Icons.account_circle),
                     const SizedBox(width: 5),
                     Text(
-                      context.watch<AuthService>().getCurrentUser().displayName ?? '',
+                      context
+                              .watch<AuthService>()
+                              .getCurrentUser()
+                              .displayName ??
+                          '',
                       style: TextStyle(
                         color: darkTheme ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w500,
@@ -81,7 +85,8 @@ class _NavigationViewState extends State<NavigationView> {
                               ),
                               onPressed: () {
                                 Route route = MaterialPageRoute(
-                                    builder: (context) => const MyAccountView());
+                                    builder: (context) =>
+                                        const MyAccountView());
                                 Navigator.of(context).pop();
                                 Navigator.push(context, route);
                               },
@@ -97,11 +102,7 @@ class _NavigationViewState extends State<NavigationView> {
                                 ),
                               ),
                               onPressed: () async {
-                                try {
-                                  await context.read<AuthService>().signOut();
-                                } catch (e) {
-                                  print(e);
-                                }
+                                await context.read<AuthService>().signOut();
                                 Navigator.of(context).pop();
                               },
                             ),

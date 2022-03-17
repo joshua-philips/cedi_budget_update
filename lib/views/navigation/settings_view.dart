@@ -38,7 +38,9 @@ class _SettingsViewState extends State<SettingsView> {
                       : const Icon(Icons.nights_stay),
                   subtitle: const Text('App will reload'),
                   title: Text(
-                    notifier.darkTheme ? 'Switch to light mode' : 'Switch to dark mode',
+                    notifier.darkTheme
+                        ? 'Switch to light mode'
+                        : 'Switch to dark mode',
                   ),
                   trailing: Switch(
                     value: notifier.darkTheme,
@@ -51,10 +53,11 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             Card(
+              clipBehavior: Clip.hardEdge,
               child: InkWell(
                 onTap: () {
-                  Route route =
-                      MaterialPageRoute(builder: (context) => const MyAccountView());
+                  Route route = MaterialPageRoute(
+                      builder: (context) => const MyAccountView());
                   Navigator.of(context).push(route);
                 },
                 child: ListTile(
@@ -65,6 +68,7 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             Card(
+              clipBehavior: Clip.hardEdge,
               child: InkWell(
                 onTap: () {
                   Route route = MaterialPageRoute(
@@ -80,6 +84,7 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             Card(
+              clipBehavior: Clip.hardEdge,
               child: InkWell(
                 onTap: () {
                   Route route = MaterialPageRoute(
@@ -94,6 +99,7 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             Card(
+              clipBehavior: Clip.hardEdge,
               child: InkWell(
                 onTap: () {
                   Route route = MaterialPageRoute(

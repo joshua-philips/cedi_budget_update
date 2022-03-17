@@ -169,19 +169,9 @@ class MyAccountView extends StatelessWidget {
   }
 
   Widget displayImage(AuthService auth, context) {
-    if (auth.getProfileImageUrl().isNotEmpty) {
-      return CircleAvatar(
-        radius: 70,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        backgroundImage: NetworkImage(
-          auth.getProfileImageUrl(),
-        ),
-      );
-    } else {
-      return const Icon(
-        Icons.account_circle,
-        size: 150,
-      );
-    }
+    return const Icon(
+      Icons.account_circle,
+      size: 150,
+    );
   }
 }

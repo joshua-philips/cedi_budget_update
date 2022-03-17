@@ -25,6 +25,7 @@ class _BudgetCardState extends State<BudgetCard> {
       padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
       child: Card(
         color: Theme.of(context).cardColor,
+        clipBehavior: Clip.hardEdge,
         child: InkWell(
           child: Column(
             children: [

@@ -124,7 +124,6 @@ class _UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     } catch (e) {
-      print(e);
       return 'Unknown Error';
     }
   }

@@ -79,3 +79,7 @@ class HomeController extends StatelessWidget {
     );
   }
 }
+
+//TODO: Firebase Messaging
+//TODO: Ability to select currency
+//TODO: Intro Slider

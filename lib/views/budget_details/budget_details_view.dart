@@ -91,7 +91,8 @@ class BudgetDetailsView extends StatelessWidget {
                                 TotalDaysText(budget: budget),
                                 const Spacer(),
                                 TextButton.icon(
-                                  icon: const Icon(Icons.calendar_today_outlined),
+                                  icon:
+                                      const Icon(Icons.calendar_today_outlined),
                                   label: const Text(
                                     'Change Dates',
                                     style: TextStyle(
@@ -146,7 +147,7 @@ class BudgetDetailsView extends StatelessWidget {
                       : Container(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8),
-                    child: InkWell(
+                    child: GestureDetector(
                       child: TotalBudgetCard(budget: budget),
                       onTap: () {
                         Route route = MaterialPageRoute(
@@ -315,8 +316,8 @@ class BudgetDetailsView extends StatelessWidget {
   }
 
   Widget notesCard(BuildContext context) {
-
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: InkWell(
         child: Column(
           children: [

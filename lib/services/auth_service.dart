@@ -65,8 +65,8 @@ class AuthService {
   }
 
   /// Get profile image from third party (google)
-  String getProfileImageUrl() {
-    return _firebaseAuth.currentUser!.photoURL!;
+  String? getProfileImageUrl() {
+    return _firebaseAuth.currentUser!.photoURL;
   }
 
   /// Update User's information
