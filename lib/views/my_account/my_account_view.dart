@@ -28,7 +28,7 @@ class MyAccountView extends StatelessWidget {
                 displayUserInformation(context, auth),
                 TextButton.icon(
                   style: TextButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.secondary,
                   ),
                   onPressed: () {
                     Route route = MaterialPageRoute(
@@ -47,7 +47,7 @@ class MyAccountView extends StatelessWidget {
                 ),
                 TextButton.icon(
                   style: TextButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.secondary,
                   ),
                   onPressed: () {
                     Route route = MaterialPageRoute(

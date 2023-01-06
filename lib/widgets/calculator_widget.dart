@@ -112,10 +112,8 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                       widget.budget.amountUsed = _amountUsed.toDouble();
                     });
 
-                    await databaseService.updateAmountUsed(
-                        uid, widget.budget);
-                    await databaseService.updateAmountSaved(
-                        uid, widget.budget);
+                    await databaseService.updateAmountUsed(uid, widget.budget);
+                    await databaseService.updateAmountSaved(uid, widget.budget);
                   },
                 ),
                 IconButton(
@@ -131,10 +129,8 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                       widget.budget.amountSaved = _amountSaved.toDouble();
                       widget.budget.amountUsed = _amountUsed.toDouble();
                     });
-                    await databaseService.updateAmountUsed(
-                        uid, widget.budget);
-                    await databaseService.updateAmountSaved(
-                        uid, widget.budget);
+                    await databaseService.updateAmountUsed(uid, widget.budget);
+                    await databaseService.updateAmountSaved(uid, widget.budget);
                   },
                 ),
               ],
@@ -161,7 +157,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
     final DatabaseService databaseService = context.read<DatabaseService>();
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.green,
+        backgroundColor: Colors.green,
       ),
       child: Text(
         'GH¢$amount',

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'new_budget_summary_view.dart';
 
-enum amountType { simple, complex }
+enum AmountType { simple, complex }
 
 class NewBudgetAmountView extends StatefulWidget {
   final Budget budget;
@@ -16,7 +16,7 @@ class NewBudgetAmountView extends StatefulWidget {
 }
 
 class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
-  amountType _amountState = amountType.simple;
+  AmountType _amountState = AmountType.simple;
   late String _switchButtonText;
   double _amountTotal = 0;
 
@@ -45,14 +45,14 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
     _itemPrice4.addListener(_setTotalAmount);
     _itemPrice5.addListener(_setTotalAmount);
 
-    _switchButtonText = _amountState == amountType.simple
+    _switchButtonText = _amountState == AmountType.simple
         ? 'Input each item'
         : 'Input total only';
   }
 
   _setTotalAmount() {
     double total = 0;
-    if (_amountState == amountType.simple) {
+    if (_amountState == AmountType.simple) {
       total = _amountController.text == ''
           ? 0
           : double.parse(_amountController.text);
@@ -74,7 +74,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
 
   List<Widget> setAmountFields(_amountController) {
     List<Widget> fields = [];
-    if (_amountState == amountType.simple) {
+    if (_amountState == AmountType.simple) {
       fields.add(
         const Padding(
           padding: EdgeInsets.only(bottom: 20),
@@ -204,7 +204,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   Map<String, double> changeItemsToMap() {
     Map<String, double> budgetItemsAndPrices = {};
 
-    if (_amountState == amountType.complex) {
+    if (_amountState == AmountType.complex) {
       if (_item1.text != '' && _itemPrice1.text != '') {
         budgetItemsAndPrices
             .addAll({_item1.text: double.parse(_itemPrice1.text)});
@@ -243,22 +243,22 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
         actions: [
           TextButton.icon(
             style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.secondary,
               padding: const EdgeInsets.only(right: 25, left: 25),
-              primary: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () {
               setState(() {
-                _amountState = _amountState == amountType.simple
-                    ? amountType.complex
-                    : amountType.simple;
+                _amountState = _amountState == AmountType.simple
+                    ? AmountType.complex
+                    : AmountType.simple;
 
-                _switchButtonText = _amountState == amountType.simple
+                _switchButtonText = _amountState == AmountType.simple
                     ? 'Input each item'
                     : 'Input total only';
               });
             },
             icon: Icon(
-              _amountState != amountType.simple
+              _amountState != AmountType.simple
                   ? Icons.add_circle_outline
                   : Icons.list_rounded,
             ),

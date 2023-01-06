@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
           const SizedBox(height: 15),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).colorScheme.secondary,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),

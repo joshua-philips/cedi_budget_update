@@ -5,7 +5,8 @@ class RoundedButton extends StatelessWidget {
   final Widget child;
   final VoidCallback onPressed;
 
-  const RoundedButton({Key? key, 
+  const RoundedButton({
+    Key? key,
     required this.color,
     required this.child,
     required this.onPressed,
@@ -16,7 +17,7 @@ class RoundedButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        primary: color,
+        backgroundColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

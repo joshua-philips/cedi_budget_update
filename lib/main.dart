@@ -2,6 +2,7 @@ import 'package:cedi_budget_update/services/database_service.dart';
 import 'package:cedi_budget_update/services/theme_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'services/auth_service.dart';
 import 'views/authentication/firstview.dart';
@@ -10,7 +11,8 @@ import 'views/authentication/sign_up_view.dart';
 import 'views/navigation/navigation_view.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
 
   runApp(const MyApp());
@@ -27,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
   }
 
   @override

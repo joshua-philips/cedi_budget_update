@@ -8,7 +8,7 @@ import 'package:cedi_budget_update/widgets/snackbar_and_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum amountType { simple, complex }
+enum AmountType { simple, complex }
 
 class EditBudgetAmountView extends StatefulWidget {
   final Budget budget;
@@ -20,7 +20,7 @@ class EditBudgetAmountView extends StatefulWidget {
 }
 
 class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
-  late amountType _amountState;
+  late AmountType _amountState;
   late String _switchButtonText;
   late double _amountTotal;
   late List<String> items;
@@ -57,10 +57,10 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
     _itemPrice5.addListener(_setTotalAmount);
 
     if (widget.budget.hasItems) {
-      _amountState = amountType.complex;
+      _amountState = AmountType.complex;
       _switchButtonText = 'Input total only';
     } else {
-      _amountState = amountType.simple;
+      _amountState = AmountType.simple;
       _switchButtonText = 'Input each item';
     }
   }
@@ -113,7 +113,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
 
   _setTotalAmount() {
     double total = 0;
-    if (_amountState == amountType.simple) {
+    if (_amountState == AmountType.simple) {
       total = _amountController.text == ''
           ? 0
           : double.parse(_amountController.text);
@@ -135,7 +135,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
 
   List<Widget> setAmountFields(_amountController) {
     List<Widget> fields = [];
-    if (_amountState == amountType.simple) {
+    if (_amountState == AmountType.simple) {
       fields.add(const Padding(
         padding: EdgeInsets.only(bottom: 20),
         child: Text(
@@ -261,7 +261,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   Map<String, double> changeItemsToMap() {
     Map<String, double> budgetItemsAndPrices = {};
 
-    if (_amountState == amountType.complex) {
+    if (_amountState == AmountType.complex) {
       if (_item1.text != '' && _itemPrice1.text != '') {
         budgetItemsAndPrices
             .addAll({_item1.text: double.parse(_itemPrice1.text)});
@@ -301,22 +301,22 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
         actions: [
           TextButton.icon(
             style: TextButton.styleFrom(
-              primary: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.secondary,
               padding: const EdgeInsets.only(right: 25, left: 25),
             ),
             onPressed: () {
               setState(() {
-                _amountState = _amountState == amountType.simple
-                    ? amountType.complex
-                    : amountType.simple;
+                _amountState = _amountState == AmountType.simple
+                    ? AmountType.complex
+                    : AmountType.simple;
 
-                _switchButtonText = _amountState == amountType.simple
+                _switchButtonText = _amountState == AmountType.simple
                     ? 'Input each item'
                     : 'Input total only';
               });
             },
             icon: Icon(
-              _amountState != amountType.simple
+              _amountState != AmountType.simple
                   ? Icons.add_circle_outline
                   : Icons.list_rounded,
             ),
