@@ -21,7 +21,7 @@ class TotalBudgetCard extends StatelessWidget {
           ),
         ),
         trailing: Text(
-          'GH¢' + budget.amount.toStringAsFixed(2),
+          'GH¢${budget.amount.toStringAsFixed(2)}',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 30,

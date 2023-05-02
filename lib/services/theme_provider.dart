@@ -13,9 +13,11 @@ ThemeData light = ThemeData.light().copyWith(
   scaffoldBackgroundColor: Colors.grey[200],
   textTheme: GoogleFonts.quicksandTextTheme(
     const TextTheme(
-      bodyText2: TextStyle(color: Colors.black, fontFamily: 'Quicksand'),
-      subtitle1: TextStyle(color: Colors.black),
-      subtitle2: TextStyle(color: Colors.black),
+      bodyMedium: TextStyle(color: Colors.black, fontFamily: 'Quicksand'),
+      labelMedium: TextStyle(color: Colors.black),
+      labelSmall: TextStyle(color: Colors.black),
+      titleMedium: TextStyle(color: Colors.black),
+      titleSmall: TextStyle(color: Colors.black),
     ),
   ),
   appBarTheme: AppBarTheme(
@@ -56,7 +58,7 @@ ThemeData dark = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Colors.black,
   textTheme: GoogleFonts.quicksandTextTheme(
     const TextTheme(
-      bodyText2: TextStyle(color: Colors.white),
+      bodyMedium: TextStyle(color: Colors.white),
     ),
   ),
   appBarTheme: AppBarTheme(

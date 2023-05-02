@@ -87,7 +87,7 @@ class MyAccountView extends StatelessWidget {
                   ),
                   onPressed: () async {
                     await auth.signOut();
-                    Navigator.pop(context);
+                    if (context.mounted) Navigator.pop(context);
                   },
                 ),
               ],

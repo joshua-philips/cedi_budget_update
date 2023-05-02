@@ -12,15 +12,15 @@ class NewBudgetAmountView extends StatefulWidget {
 
   const NewBudgetAmountView({Key? key, required this.budget}) : super(key: key);
   @override
-  _NewBudgetAmountViewState createState() => _NewBudgetAmountViewState();
+  NewBudgetAmountViewState createState() => NewBudgetAmountViewState();
 }
 
-class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
+class NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   AmountType _amountState = AmountType.simple;
   late String _switchButtonText;
   double _amountTotal = 0;
 
-  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
   // Items
   final TextEditingController _item1 = TextEditingController();
   final TextEditingController _item2 = TextEditingController();
@@ -38,7 +38,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   @override
   void initState() {
     super.initState();
-    _amountController.addListener(_setTotalAmount);
+    amountController.addListener(_setTotalAmount);
     _itemPrice1.addListener(_setTotalAmount);
     _itemPrice2.addListener(_setTotalAmount);
     _itemPrice3.addListener(_setTotalAmount);
@@ -53,9 +53,8 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
   _setTotalAmount() {
     double total = 0;
     if (_amountState == AmountType.simple) {
-      total = _amountController.text == ''
-          ? 0
-          : double.parse(_amountController.text);
+      total =
+          amountController.text == '' ? 0 : double.parse(amountController.text);
       setState(() {
         _amountTotal = total;
       });
@@ -67,12 +66,12 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
       total += _itemPrice5.text == '' ? 0 : double.parse(_itemPrice5.text);
       setState(() {
         _amountTotal = total;
-        _amountController.text = _amountTotal.toStringAsFixed(2);
+        amountController.text = _amountTotal.toStringAsFixed(2);
       });
     }
   }
 
-  List<Widget> setAmountFields(_amountController) {
+  List<Widget> setAmountFields(amountController) {
     List<Widget> fields = [];
     if (_amountState == AmountType.simple) {
       fields.add(
@@ -92,7 +91,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
         Padding(
           padding: const EdgeInsets.only(right: 50),
           child: MoneyTextField(
-            controller: _amountController,
+            controller: amountController,
             helperText: 'Total Budget',
             autofocus: true,
           ),
@@ -277,7 +276,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
                     child: Text(
                       'Summary',
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText2!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                       ),
                     ),
                   ),
@@ -296,7 +295,7 @@ class _NewBudgetAmountViewState extends State<NewBudgetAmountView> {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-              children: setAmountFields(_amountController) +
+              children: setAmountFields(amountController) +
                   [
                     Padding(
                       padding: const EdgeInsets.only(top: 15),

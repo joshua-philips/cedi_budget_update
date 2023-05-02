@@ -12,11 +12,11 @@ class UpdateUserAccountInfoView extends StatefulWidget {
   const UpdateUserAccountInfoView({Key? key}) : super(key: key);
 
   @override
-  _UpdateUserAccountInfoViewState createState() =>
-      _UpdateUserAccountInfoViewState();
+  UpdateUserAccountInfoViewState createState() =>
+      UpdateUserAccountInfoViewState();
 }
 
-class _UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
+class UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
@@ -86,18 +86,22 @@ class _UpdateUserAccountInfoViewState extends State<UpdateUserAccountInfoView> {
                             if (formKey.currentState!.validate()) {
                               showLoadingDialog(context);
                               String returnedString = await changeUserInfo();
-                              hideLoadingDialog(context);
 
-                              if (returnedString == 'Success') {
-                                showMessageSnackBar(
-                                    context, 'User info updated');
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => const MyAccountView(),
-                                  ),
-                                );
+                              if (context.mounted) {
+                                hideLoadingDialog(context);
+
+                                if (returnedString == 'Success') {
+                                  showMessageSnackBar(
+                                      context, 'User info updated');
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MyAccountView(),
+                                    ),
+                                  );
+                                }
                               } else {
                                 showMessageSnackBar(context, returnedString);
                               }

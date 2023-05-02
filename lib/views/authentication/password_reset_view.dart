@@ -10,10 +10,10 @@ class PasswordResetView extends StatefulWidget {
   const PasswordResetView({Key? key}) : super(key: key);
 
   @override
-  _PasswordResetViewState createState() => _PasswordResetViewState();
+  PasswordResetViewState createState() => PasswordResetViewState();
 }
 
-class _PasswordResetViewState extends State<PasswordResetView> {
+class PasswordResetViewState extends State<PasswordResetView> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   @override
@@ -66,6 +66,17 @@ class _PasswordResetViewState extends State<PasswordResetView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: RoundedButton(
+                            onPressed: () async {
+                              if (formKey.currentState!.validate()) {
+                                showLoadingDialog(context);
+                                String returnedString = await sendResetEmail();
+                                if (context.mounted) {
+                                  hideLoadingDialog(context);
+                                  showMessageSnackBar(context, returnedString);
+                                }
+                              }
+                            },
+                            color: Colors.white,
                             child: const Padding(
                               padding: EdgeInsets.only(
                                 left: 50,
@@ -82,15 +93,6 @@ class _PasswordResetViewState extends State<PasswordResetView> {
                                 ),
                               ),
                             ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                showLoadingDialog(context);
-                                String returnedString = await sendResetEmail();
-                                hideLoadingDialog(context);
-                                showMessageSnackBar(context, returnedString);
-                              }
-                            },
-                            color: Colors.white,
                           ),
                         ),
                       ],

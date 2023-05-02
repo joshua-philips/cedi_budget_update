@@ -39,7 +39,8 @@ class NewBudgetSummaryView extends StatelessWidget {
                         child: Text(
                           'Finish',
                           style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText2!.color,
+                            color:
+                                Theme.of(context).textTheme.bodyMedium!.color,
                           ),
                         ),
                       ),
@@ -49,8 +50,10 @@ class NewBudgetSummaryView extends StatelessWidget {
                     showLoadingDialog(context);
 
                     await databaseService.saveBudgetToFirestore(budget, uid);
-                    hideLoadingDialog(context);
-                    Navigator.of(context).popUntil((route) => route.isFirst);
+                    if (context.mounted) {
+                      hideLoadingDialog(context);
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                    }
                   },
                 ),
               ),
@@ -112,9 +115,11 @@ class NewBudgetSummaryView extends StatelessWidget {
 
                         await databaseService.saveBudgetToFirestore(
                             budget, uid);
-                        hideLoadingDialog(context);
-                        Navigator.of(context)
-                            .popUntil((route) => route.isFirst);
+                        if (context.mounted) {
+                          hideLoadingDialog(context);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
+                        }
                       },
                     ),
                     Container(height: 60),

@@ -13,10 +13,10 @@ class DepositView extends StatefulWidget {
 
   const DepositView({Key? key, required this.budget}) : super(key: key);
   @override
-  _DepositViewState createState() => _DepositViewState();
+  DepositViewState createState() => DepositViewState();
 }
 
-class _DepositViewState extends State<DepositView> {
+class DepositViewState extends State<DepositView> {
   String _amount = '0';
   String _error = '';
   @override
@@ -84,7 +84,7 @@ class _DepositViewState extends State<DepositView> {
         number,
         style: TextStyle(
           fontSize: 40,
-          color: Theme.of(context).textTheme.bodyText2!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -109,7 +109,7 @@ class _DepositViewState extends State<DepositView> {
         '-',
         style: TextStyle(
           fontSize: 40,
-          color: Theme.of(context).textTheme.bodyText2!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -121,7 +121,7 @@ class _DepositViewState extends State<DepositView> {
             _amount = _amount;
             HapticFeedback.heavyImpact();
           } else {
-            _amount = '-' + _amount;
+            _amount = '-$_amount';
           }
         });
       },
@@ -134,7 +134,7 @@ class _DepositViewState extends State<DepositView> {
         '.',
         style: TextStyle(
           fontSize: 40,
-          color: Theme.of(context).textTheme.bodyText2!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -157,7 +157,7 @@ class _DepositViewState extends State<DepositView> {
     return TextButton(
       child: Icon(
         Icons.backspace_rounded,
-        color: Theme.of(context).textTheme.bodyText2!.color,
+        color: Theme.of(context).textTheme.bodyMedium!.color,
       ),
       onPressed: () {
         setState(() {
@@ -242,23 +242,31 @@ class _DepositViewState extends State<DepositView> {
       showLoadingDialog(context);
 
       await context.read<DatabaseService>().addToLedger(uid, widget.budget);
-      await context
-          .read<DatabaseService>()
-          .updateAmountSaved(uid, widget.budget);
-      await context
-          .read<DatabaseService>()
-          .updateAmountUsed(uid, widget.budget);
-      hideLoadingDialog(context);
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) =>
-              BudgetDetailsView(budget: widget.budget),
-          transitionDuration: const Duration(seconds: 0),
-        ),
-      );
+
+      if (context.mounted) {
+        await context
+            .read<DatabaseService>()
+            .updateAmountSaved(uid, widget.budget);
+      }
+
+      if (context.mounted) {
+        await context
+            .read<DatabaseService>()
+            .updateAmountUsed(uid, widget.budget);
+      }
+      if (context.mounted) {
+        hideLoadingDialog(context);
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                    Animation<double> secondaryAnimation) =>
+                BudgetDetailsView(budget: widget.budget),
+            transitionDuration: const Duration(seconds: 0),
+          ),
+        );
+      }
     }
   }
 

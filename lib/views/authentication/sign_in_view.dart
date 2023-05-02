@@ -14,10 +14,10 @@ class SignInView extends StatefulWidget {
   const SignInView({Key? key}) : super(key: key);
 
   @override
-  _SignInViewState createState() => _SignInViewState();
+  SignInViewState createState() => SignInViewState();
 }
 
-class _SignInViewState extends State<SignInView> {
+class SignInViewState extends State<SignInView> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -118,12 +118,15 @@ class _SignInViewState extends State<SignInView> {
                               if (formKey.currentState!.validate()) {
                                 showLoadingDialog(context);
                                 String returnedString = await signIn();
-                                hideLoadingDialog(context);
-                                if (returnedString != 'Success') {
-                                  showMessageSnackBar(context, returnedString);
-                                } else {
-                                  Navigator.popUntil(context,
-                                      (_) => !Navigator.canPop(context));
+                                if (context.mounted) {
+                                  hideLoadingDialog(context);
+                                  if (returnedString != 'Success') {
+                                    showMessageSnackBar(
+                                        context, returnedString);
+                                  } else {
+                                    Navigator.popUntil(context,
+                                        (_) => !Navigator.canPop(context));
+                                  }
                                 }
                               }
                             },
@@ -160,12 +163,14 @@ class _SignInViewState extends State<SignInView> {
                   ),
                   onPressed: () async {
                     String returnedString = await googleSignIn();
-                    if (returnedString != 'Success') {
-                      showMessageSnackBar(context,
-                          'Error signing in with Google. Please try again');
-                    } else {
-                      Navigator.popUntil(
-                          context, (_) => !Navigator.canPop(context));
+                    if (context.mounted) {
+                      if (returnedString != 'Success') {
+                        showMessageSnackBar(context,
+                            'Error signing in with Google. Please try again');
+                      } else {
+                        Navigator.popUntil(
+                            context, (_) => !Navigator.canPop(context));
+                      }
                     }
                   },
                 ),

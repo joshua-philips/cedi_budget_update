@@ -16,17 +16,17 @@ class EditBudgetAmountView extends StatefulWidget {
   const EditBudgetAmountView({Key? key, required this.budget})
       : super(key: key);
   @override
-  _EditBudgetAmountViewState createState() => _EditBudgetAmountViewState();
+  EditBudgetAmountViewState createState() => EditBudgetAmountViewState();
 }
 
-class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
+class EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   late AmountType _amountState;
   late String _switchButtonText;
   late double _amountTotal;
   late List<String> items;
   late List<double> prices;
 
-  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
   // Items
   final TextEditingController _item1 = TextEditingController();
   final TextEditingController _item2 = TextEditingController();
@@ -45,11 +45,11 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   void initState() {
     super.initState();
     _amountTotal = widget.budget.amount;
-    _amountController.text = _amountTotal.toString();
+    amountController.text = _amountTotal.toString();
 
     initializeItemsFields();
 
-    _amountController.addListener(_setTotalAmount);
+    amountController.addListener(_setTotalAmount);
     _itemPrice1.addListener(_setTotalAmount);
     _itemPrice2.addListener(_setTotalAmount);
     _itemPrice3.addListener(_setTotalAmount);
@@ -114,9 +114,8 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
   _setTotalAmount() {
     double total = 0;
     if (_amountState == AmountType.simple) {
-      total = _amountController.text == ''
-          ? 0
-          : double.parse(_amountController.text);
+      total =
+          amountController.text == '' ? 0 : double.parse(amountController.text);
       setState(() {
         _amountTotal = total;
       });
@@ -128,12 +127,12 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
       total += _itemPrice5.text == '' ? 0 : double.parse(_itemPrice5.text);
       setState(() {
         _amountTotal = total;
-        _amountController.text = _amountTotal.toStringAsFixed(2);
+        amountController.text = _amountTotal.toStringAsFixed(2);
       });
     }
   }
 
-  List<Widget> setAmountFields(_amountController) {
+  List<Widget> setAmountFields(amountController) {
     List<Widget> fields = [];
     if (_amountState == AmountType.simple) {
       fields.add(const Padding(
@@ -151,7 +150,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
         Padding(
           padding: const EdgeInsets.only(right: 50),
           child: MoneyTextField(
-            controller: _amountController,
+            controller: amountController,
             helperText: 'Total Budget',
           ),
         ),
@@ -335,7 +334,7 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
                     child: Text(
                       'Save',
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText2!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                       ),
                     ),
                   ),
@@ -354,9 +353,13 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-              children: setAmountFields(_amountController) +
+              children: setAmountFields(amountController) +
                   [
                     RoundedButton(
+                      color: Theme.of(context).colorScheme.secondary,
+                      onPressed: () {
+                        finish();
+                      },
                       child: const Text(
                         'Save',
                         style: TextStyle(
@@ -365,10 +368,6 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
                           color: Colors.white,
                         ),
                       ),
-                      color: Theme.of(context).colorScheme.secondary,
-                      onPressed: () {
-                        finish();
-                      },
                     ),
                   ],
             ),
@@ -390,9 +389,11 @@ class _EditBudgetAmountViewState extends State<EditBudgetAmountView> {
       await context
           .read<DatabaseService>()
           .updateAmountAndItems(uid, widget.budget);
-      hideLoadingDialog(context);
-      Navigator.popUntil(context, (route) => route.isFirst);
-      Navigator.push(context, route);
+      if (context.mounted) {
+        hideLoadingDialog(context);
+        Navigator.popUntil(context, (route) => route.isFirst);
+        Navigator.push(context, route);
+      }
     } catch (e) {
       hideLoadingDialog(context);
       // showMessageSnackBar(context, e.message);

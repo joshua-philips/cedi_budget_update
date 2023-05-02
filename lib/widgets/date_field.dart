@@ -37,8 +37,8 @@ class DateField extends StatelessWidget {
               ),
               const Spacer(),
               InkWell(
-                child: Icon(icon, size: 40),
                 onTap: onIconPressed,
+                child: Icon(icon, size: 40),
               ),
             ],
           ),

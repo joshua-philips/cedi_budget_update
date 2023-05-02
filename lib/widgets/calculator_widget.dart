@@ -12,10 +12,10 @@ class CalculatorWidget extends StatefulWidget {
   const CalculatorWidget({Key? key, required this.budget}) : super(key: key);
 
   @override
-  _CalculatorWidgetState createState() => _CalculatorWidgetState();
+  CalculatorWidgetState createState() => CalculatorWidgetState();
 }
 
-class _CalculatorWidgetState extends State<CalculatorWidget> {
+class CalculatorWidgetState extends State<CalculatorWidget> {
   final TextEditingController _moneyController = TextEditingController();
   int _amountSaved = 0;
   int _amountUsed = 0;
@@ -61,7 +61,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                   SizedBox(
                     height: 80,
                     child: VerticalDivider(
-                      color: Theme.of(context).textTheme.bodyText2!.color,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
                       thickness: 4,
                     ),
                   ),

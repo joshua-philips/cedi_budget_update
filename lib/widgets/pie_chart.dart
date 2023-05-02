@@ -7,10 +7,10 @@ class PieChartCardFL extends StatefulWidget {
 
   const PieChartCardFL({Key? key, required this.budget}) : super(key: key);
   @override
-  _PieChartCardFLState createState() => _PieChartCardFLState();
+  PieChartCardFLState createState() => PieChartCardFLState();
 }
 
-class _PieChartCardFLState extends State<PieChartCardFL> {
+class PieChartCardFLState extends State<PieChartCardFL> {
   int touchedIndex = -1;
   late Map<String, double> dataMap;
 

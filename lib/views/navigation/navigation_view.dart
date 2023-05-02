@@ -15,10 +15,10 @@ class NavigationView extends StatefulWidget {
   const NavigationView({Key? key}) : super(key: key);
 
   @override
-  _NavigationViewState createState() => _NavigationViewState();
+  NavigationViewState createState() => NavigationViewState();
 }
 
-class _NavigationViewState extends State<NavigationView> {
+class NavigationViewState extends State<NavigationView> {
   final Budget budget = Budget.noArgument();
   int _currentNavigationIndex = 0;
   final List<Widget> _children = [
@@ -103,7 +103,9 @@ class _NavigationViewState extends State<NavigationView> {
                               ),
                               onPressed: () async {
                                 await context.read<AuthService>().signOut();
-                                Navigator.of(context).pop();
+                                if (context.mounted) {
+                                  Navigator.of(context).pop();
+                                }
                               },
                             ),
                             const SizedBox(height: 5),

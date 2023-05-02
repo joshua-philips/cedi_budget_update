@@ -74,7 +74,7 @@ class AllTimeDataView extends StatelessWidget {
             'Total Amount Set:',
           ),
           trailing: Text(
-            'GH¢' + (amountTotal).toStringAsFixed(2),
+            'GH¢${(amountTotal).toStringAsFixed(2)}',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -86,7 +86,7 @@ class AllTimeDataView extends StatelessWidget {
             'Total Amount Spent:',
           ),
           trailing: Text(
-            'GH¢' + (usedTotal).toStringAsFixed(2),
+            'GH¢${(usedTotal).toStringAsFixed(2)}',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -98,7 +98,7 @@ class AllTimeDataView extends StatelessWidget {
             'Total Amount Saved:',
           ),
           trailing: Text(
-            'GH¢' + (savedTotal).toStringAsFixed(2),
+            'GH¢${(savedTotal).toStringAsFixed(2)}',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,

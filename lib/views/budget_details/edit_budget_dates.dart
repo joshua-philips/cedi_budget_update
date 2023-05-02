@@ -14,10 +14,10 @@ class EditBudgetDatesView extends StatefulWidget {
 
   const EditBudgetDatesView({Key? key, required this.budget}) : super(key: key);
   @override
-  _EditBudgetDatesViewState createState() => _EditBudgetDatesViewState();
+  EditBudgetDatesViewState createState() => EditBudgetDatesViewState();
 }
 
-class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
+class EditBudgetDatesViewState extends State<EditBudgetDatesView> {
   late DateTime _startDate;
   late DateTime _endDate;
   late int _totalDays;
@@ -139,9 +139,11 @@ class _EditBudgetDatesViewState extends State<EditBudgetDatesView> {
               await context
                   .read<DatabaseService>()
                   .updateDates(uid, widget.budget);
-              hideLoadingDialog(context);
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              Navigator.of(context).push(route);
+              if (context.mounted) {
+                hideLoadingDialog(context);
+                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.of(context).push(route);
+              }
             } catch (e) {
               hideLoadingDialog(context);
               // showMessageSnackBar(context, e.message);

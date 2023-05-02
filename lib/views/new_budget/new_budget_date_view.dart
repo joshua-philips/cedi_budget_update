@@ -13,10 +13,10 @@ class NewBudgetDateView extends StatefulWidget {
   const NewBudgetDateView({Key? key, required this.budget}) : super(key: key);
 
   @override
-  _NewBudgetDateViewState createState() => _NewBudgetDateViewState();
+  NewBudgetDateViewState createState() => NewBudgetDateViewState();
 }
 
-class _NewBudgetDateViewState extends State<NewBudgetDateView> {
+class NewBudgetDateViewState extends State<NewBudgetDateView> {
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now().add(const Duration(days: 7));
 

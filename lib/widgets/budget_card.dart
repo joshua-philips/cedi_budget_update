@@ -61,7 +61,7 @@ class _BudgetCardState extends State<BudgetCard> {
                     ),
                     Flexible(
                       child: AutoSizeText(
-                        'GH¢' + budget.amount.toStringAsFixed(2),
+                        'GH¢${budget.amount.toStringAsFixed(2)}',
                         maxLines: 1,
                         style: const TextStyle(
                           fontSize: 35,
@@ -105,7 +105,7 @@ class _BudgetCardState extends State<BudgetCard> {
               children: [
                 Text(items[index]),
                 const Spacer(),
-                Text('GH¢' + prices[index].toStringAsFixed(2)),
+                Text('GH¢${prices[index].toStringAsFixed(2)}'),
               ],
             ),
           );

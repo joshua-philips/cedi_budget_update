@@ -11,10 +11,10 @@ class EditNotesView extends StatefulWidget {
 
   const EditNotesView({Key? key, required this.budget}) : super(key: key);
   @override
-  _EditNotesViewState createState() => _EditNotesViewState();
+  EditNotesViewState createState() => EditNotesViewState();
 }
 
-class _EditNotesViewState extends State<EditNotesView> {
+class EditNotesViewState extends State<EditNotesView> {
   final TextEditingController _notesController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 

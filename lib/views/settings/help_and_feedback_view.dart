@@ -10,10 +10,10 @@ class HelpAndFeedback extends StatefulWidget {
   const HelpAndFeedback({Key? key}) : super(key: key);
 
   @override
-  _HelpAndFeedbackState createState() => _HelpAndFeedbackState();
+  HelpAndFeedbackState createState() => HelpAndFeedbackState();
 }
 
-class _HelpAndFeedbackState extends State<HelpAndFeedback> {
+class HelpAndFeedbackState extends State<HelpAndFeedback> {
   final TextEditingController _feedbackController = TextEditingController();
 
   @override
@@ -30,7 +30,8 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
         children: [
           ExpansionTile(
             title: const Text('Guidelines'),
-            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            childrenPadding:
+                const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
               Text(
                 shortLorem,
@@ -39,7 +40,8 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
           ),
           ExpansionTile(
             title: const Text('Privacy Policy'),
-            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            childrenPadding:
+                const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
               Text(
                 shortLorem,
@@ -48,7 +50,8 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
           ),
           ExpansionTile(
             title: const Text('Contributors'),
-            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            childrenPadding:
+                const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
               Row(
                 children: [
@@ -60,7 +63,8 @@ class _HelpAndFeedbackState extends State<HelpAndFeedback> {
           ExpansionTile(
             title: const Text('Feedback'),
             initiallyExpanded: true,
-            childrenPadding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            childrenPadding:
+                const EdgeInsets.only(left: 30, right: 30, bottom: 20),
             children: [
               const Padding(
                 padding: EdgeInsets.all(10),

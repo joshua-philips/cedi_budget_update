@@ -282,8 +282,10 @@ class BudgetDetailsView extends StatelessWidget {
                             await context
                                 .read<DatabaseService>()
                                 .deleteBudget(uid, budget);
-                            Navigator.of(context)
-                                .popUntil((route) => route.isFirst);
+                            if (context.mounted) {
+                              Navigator.of(context)
+                                  .popUntil((route) => route.isFirst);
+                            }
                           },
                         ),
                         TextButton(
@@ -296,7 +298,7 @@ class BudgetDetailsView extends StatelessWidget {
                               fontWeight: FontWeight.w900,
                               fontSize: 20,
                               color:
-                                  Theme.of(context).textTheme.bodyText2!.color,
+                                  Theme.of(context).textTheme.bodyMedium!.color,
                             ),
                           ),
                           onPressed: () {

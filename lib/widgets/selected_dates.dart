@@ -9,7 +9,7 @@ class SelectedDates extends StatelessWidget {
   const SelectedDates({Key? key, required this.budget}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Color dateColor = Theme.of(context).textTheme.bodyText2!.color!;
+    Color dateColor = Theme.of(context).textTheme.bodyMedium!.color!;
     return Padding(
       padding: const EdgeInsets.only(top: 0),
       child: Row(
@@ -38,7 +38,8 @@ class SelectedDates extends StatelessWidget {
             ],
           ),
           Container(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 15),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 15),
             child: Icon(
               Icons.arrow_forward,
               size: 30,
@@ -150,7 +151,7 @@ class FullDates extends StatelessWidget {
   const FullDates({Key? key, required this.budget}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Color dateColor = Theme.of(context).textTheme.bodyText2!.color!;
+    Color dateColor = Theme.of(context).textTheme.bodyMedium!.color!;
     return Padding(
       padding: const EdgeInsets.only(top: 0),
       child: Column(
@@ -188,7 +189,9 @@ class FullDates extends StatelessWidget {
               SizedBox(
                 height: 30,
                 child: AutoSizeText(
-                  DateFormat('EEEE, MMM d, yyyy').format(budget.endDate).toString(),
+                  DateFormat('EEEE, MMM d, yyyy')
+                      .format(budget.endDate)
+                      .toString(),
                   maxLines: 1,
                   style: TextStyle(
                     color: dateColor,

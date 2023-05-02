@@ -16,11 +16,11 @@ class CustomBottomNavigationBar extends StatefulWidget {
     required this.children,
   }) : super(key: key);
   @override
-  _CustomBottomNavigationBarState createState() =>
-      _CustomBottomNavigationBarState();
+  CustomBottomNavigationBarState createState() =>
+      CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   void _changeIndex(int index) {
     widget.onChange(index);
   }

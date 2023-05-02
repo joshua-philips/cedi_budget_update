@@ -12,10 +12,10 @@ class ChangePasswordView extends StatefulWidget {
   const ChangePasswordView({Key? key}) : super(key: key);
 
   @override
-  _ChangePasswordViewState createState() => _ChangePasswordViewState();
+  ChangePasswordViewState createState() => ChangePasswordViewState();
 }
 
-class _ChangePasswordViewState extends State<ChangePasswordView> {
+class ChangePasswordViewState extends State<ChangePasswordView> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
@@ -109,17 +109,21 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               showLoadingDialog(context);
                               String returnedString = await changePassword();
                               if (returnedString == 'Success') {
-                                hideLoadingDialog(context);
-                                showAlertDialog(context, 'Success!',
-                                    'Password succesfully changed');
-                                setState(() {
-                                  _confirmPasswordController.clear();
-                                  _newPasswordController.clear();
-                                  _oldPasswordController.clear();
-                                });
+                                if (context.mounted) {
+                                  hideLoadingDialog(context);
+                                  showAlertDialog(context, 'Success!',
+                                      'Password succesfully changed');
+                                  setState(() {
+                                    _confirmPasswordController.clear();
+                                    _newPasswordController.clear();
+                                    _oldPasswordController.clear();
+                                  });
+                                }
                               } else {
-                                hideLoadingDialog(context);
-                                showMessageSnackBar(context, returnedString);
+                                if (context.mounted) {
+                                  hideLoadingDialog(context);
+                                  showMessageSnackBar(context, returnedString);
+                                }
                               }
                             }
                           },
