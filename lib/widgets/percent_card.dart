@@ -26,7 +26,6 @@ class PercentCard extends StatelessWidget {
             ),
             LinearPercentIndicator(
               lineHeight: 30,
-              linearStrokeCap: LinearStrokeCap.butt,
               progressColor: progressColor,
               percent: calculatePercent(
                   (budget.amountSaved + budget.amountUsed), budget.amount),
@@ -47,7 +46,6 @@ class PercentCard extends StatelessWidget {
             ),
             LinearPercentIndicator(
               lineHeight: 30,
-              linearStrokeCap: LinearStrokeCap.butt,
               progressColor: Colors.pink[600],
               percent: calculatePercent(budget.amountUsed, budget.amount),
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -65,7 +63,6 @@ class PercentCard extends StatelessWidget {
             ),
             LinearPercentIndicator(
               lineHeight: 30,
-              linearStrokeCap: LinearStrokeCap.butt,
               progressColor: Colors.green,
               percent: calculatePercent(budget.amountSaved, budget.amount),
               padding: const EdgeInsets.symmetric(horizontal: 20),
